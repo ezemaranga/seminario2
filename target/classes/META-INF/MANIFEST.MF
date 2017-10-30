@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: seminario2
+Implementation-Version: 0.1.0
+Built-By: EzeMaranga
+Implementation-Vendor-Id: org.springframework
+Build-Jdk: 1.8.0_151
+Implementation-URL: http://projects.spring.io/spring-boot/seminario2/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
