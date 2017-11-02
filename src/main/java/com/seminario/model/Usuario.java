@@ -27,7 +27,6 @@ public class Usuario {
 	private List<Partido> jugados;
 	private List<Partido> organizados;
 	private Reputacion reputacion;
-	private List<Premio> premios;
 	
 	public String getUsername() {
 		return username;
@@ -124,15 +123,6 @@ public class Usuario {
 	}
 	public void setReputacion(Reputacion reputacion) {
 		this.reputacion = reputacion;
-	}
-	public List<Premio> getPremios() {
-		if (premios == null) {
-			premios = new ArrayList<>();
-		}
-		return premios;
-	}
-	public void setPremios(List<Premio> premios) {
-		this.premios = premios;
 	}
 	
 }

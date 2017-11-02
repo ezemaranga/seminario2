@@ -6,6 +6,7 @@ import com.seminario.model.Usuario;
 
 public interface UserRepository extends MongoRepository<Usuario, String> {
 
+	Usuario findById(String id);
 	Usuario findByUsername(String username);
 	Usuario findByEmail(String email);
 	
