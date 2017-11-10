@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.seminario.model.Partido;
+import com.seminario.model.Premio;
+import com.seminario.model.PremioNombre;
 import com.seminario.model.Usuario;
+import com.seminario.repository.PartidoRepository;
 import com.seminario.repository.PremioRepository;
 import com.seminario.repository.UserRepository;
 import com.seminario.usuario.dto.EditarPerfilUsuarioRequest;
@@ -32,6 +36,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private PremioRepository premioRepository;
+	
+	@Autowired
+	private PartidoRepository partidoRepository;
 	
 	@RequestMapping(value = "/registracion", method = RequestMethod.POST)
     public RegistroUsuarioResponse registrar(@RequestBody RegistroUsuarioRequest request) {
@@ -85,6 +92,42 @@ public class UsuarioController {
     public ValorarUsuarioResponse valorar(@RequestBody ValorarUsuarioRequest request) {
 		ValorarUsuarioResponse response = new ValorarUsuarioResponse();
 		
+		Usuario usuario = userRepository.findById(request.getIdUsuarioJugador());
+		
+		Partido partido = partidoRepository.findById(request.getIdPartido());
+		partido.setJugado(request.isJugado());
+		partidoRepository.save(partido);
+		
+		List<Partido> partidos = partidoRepository.findByIdUsuarioJugador(request.getIdUsuarioJugador());
+		
+		int nuevaReputacion = calcularReputacion(partidos.size(), usuario.getReputacion(), request.getReputacion());
+		usuario.setReputacion(nuevaReputacion);
+		userRepository.save(usuario);
+		
+		if (partidos != null) { 
+			PremioNombre premioNombre = null;
+			boolean nuevoPremio = false;
+			if (partidos.size() == 1) {
+				premioNombre = PremioNombre.DEBUTANTE;
+				nuevoPremio = true;
+			} else if (partidos.size() == 10 && usuario.getReputacion() >= 6) {
+				premioNombre = PremioNombre.CUMPLIDOR;
+				nuevoPremio = true;
+			} else if (partidos.size() == 20 && usuario.getReputacion() >= 8) {
+				premioNombre = PremioNombre.CRACK_MUNDIAL;
+				nuevoPremio = true;
+			}
+			
+			if(nuevoPremio) {
+				Premio premio = new Premio();
+				premio.setIdUsuario(request.getIdUsuarioJugador());
+				premio.setPremioNombre(premioNombre);
+				premioRepository.save(premio);
+			}
+		}
+		
+		response.setCodigoRespuesta(5);
+		response.setMensaje("La valoracion se envio correctamente.");
         return response;
     }
 	
@@ -96,8 +139,8 @@ public class UsuarioController {
         return response;
     }
 	
-	@RequestMapping(value = "/remove", method = RequestMethod.GET)
-    public void remove() {
+	@RequestMapping(value = "/removeAll", method = RequestMethod.GET)
+    public void removeAll() {
 		userRepository.deleteAll();
     }
 	
@@ -108,4 +151,10 @@ public class UsuarioController {
 		return response;
     }
 
+	private int calcularReputacion(int cantPartidos, int reputacionActual, int nuevaValoracion) {
+		int nuevaReputacion = (((cantPartidos - 1) * reputacionActual) + nuevaValoracion) / cantPartidos;
+		return nuevaReputacion;		
+	}
+	
+	
 }
