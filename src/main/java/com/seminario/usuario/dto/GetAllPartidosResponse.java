@@ -1,9 +1,14 @@
-package com.seminario.partido.dto;
+package com.seminario.usuario.dto;
 
-public class CrearPartidoResponse {
-	
+import java.util.List;
+
+import com.seminario.model.Partido;
+
+public class GetAllPartidosResponse {
+
 	private int codigoRespuesta;
 	private String mensaje;
+	private List<Partido> partidos;
 	
 	public int getCodigoRespuesta() {
 		return codigoRespuesta;
@@ -17,5 +22,11 @@ public class CrearPartidoResponse {
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-
+	public List<Partido> getPartidos() {
+		return partidos;
+	}
+	public void setPartidos(List<Partido> partidos) {
+		this.partidos = partidos;
+	}
+	
 }
