@@ -48,7 +48,7 @@ public class PartidoController {
 		partidoRepository.save(request.getPartido());
 		
 		response.setCodigoRespuesta(1);
-		response.setMensaje("El partido se guardo correctamente.");
+		response.setMensaje("OK");
 		
 		return response;
     }
@@ -64,7 +64,7 @@ public class PartidoController {
 		postulacionRepository.save(postulacion);
 		
 		response.setCodigoRespuesta(10);
-		response.setMensaje("La postulacion fue guardada correctamente");
+		response.setMensaje("OK");
 		
 		return response;
     }
@@ -93,6 +93,16 @@ public class PartidoController {
 	@RequestMapping(value = "/aceptar", method = RequestMethod.POST)
     public AceptarJugadorResponse postularme(@RequestBody AceptarJugadorRequest request) {
 		AceptarJugadorResponse response = new AceptarJugadorResponse();
+		
+		Postulacion postulacion = postulacionRepository.findById(request.getIdPostulacion());
+		
+		Partido partido = partidoRepository.findById(postulacion.getIdPartido());
+		partido.setIdUsuarioJugador(postulacion.getIdJugador());
+		
+		partidoRepository.save(partido);
+		
+		response.setCodigoRespuesta(12);
+		response.setMensaje("OK");
 		
 		return response;
     }

@@ -51,7 +51,7 @@ public class UsuarioController {
 		userRepository.save(usuario);
 		
 		response.setCodigoRespuesta(1);
-		response.setMensaje("Usuario registrado correctamente.");
+		response.setMensaje("OK");
         return response;
     }
 	
@@ -83,7 +83,7 @@ public class UsuarioController {
 		
 		userRepository.save(request.getUsuario());
 		response.setCodigoRespuesta(4);
-		response.setMensaje("El usuario se guardo correctamente.");
+		response.setMensaje("OK");
 		
         return response;
     }
@@ -128,7 +128,7 @@ public class UsuarioController {
 		}
 		
 		response.setCodigoRespuesta(5);
-		response.setMensaje("La valoracion se envio correctamente.");
+		response.setMensaje("OK");
         return response;
     }
 	
