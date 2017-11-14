@@ -1,0 +1,61 @@
+<div class="scrollable">
+  <div class="scrollable-content section profileContainer">
+    
+    <h1>Perfil de <b>{{Profile.currentUser.username}}</b></h1>
+    <div class="font-35px display-flex flex-center">
+        <i class="fa AMARILLO shadowIcon" ng-class="Profile.getStar(1)" aria-hidden="true"></i>
+        <i class="fa AMARILLO shadowIcon" ng-class="Profile.getStar(2)" aria-hidden="true"></i>
+        <i class="fa AMARILLO shadowIcon" ng-class="Profile.getStar(3)" aria-hidden="true"></i>
+        <i class="fa AMARILLO shadowIcon" ng-class="Profile.getStar(4)" aria-hidden="true"></i>
+        <i class="fa AMARILLO shadowIcon" ng-class="Profile.getStar(5)" aria-hidden="true"></i>
+    </div>
+    <div>
+
+      <div class="form-group row font-20px">
+        <label class="col-sm-2 col-form-label col-form-label-lg">Email</label>
+        <div class="col-sm-10">{{Profile.currentUser.email}}</div>
+      </div>
+      <div class="form-group row font-20px">
+        <label for="edad" class="col-sm-2 col-form-label col-form-label-lg">Edad</label>
+        <div class="col-sm-10">{{Profile.currentUser.edad}}</div>
+      </div>
+
+      <h2>Características</h2>
+      <div class="display-flex flex-justify caracteristicasContainer">
+        <div class="display-flex flex-column">
+          <div><i class="fa fa-square fa-navbar font-30px" 
+            ng-class="Profile.currentUser.ataja"></i> <div>Ataja</div></div>
+          <div><i class="fa fa-square fa-navbar font-30px" 
+            ng-class="Profile.currentUser.defensa"></i> <div>Defensa</div></div>
+          <div><i class="fa fa-square fa-navbar font-30px" 
+            ng-class="Profile.currentUser.ataque"></i> <div>Ataque</div></div>
+        </div>
+        <div class="display-flex flex-column">
+          <div><i class="fa fa-square fa-navbar font-30px" 
+            ng-class="Profile.currentUser.estado"></i> <div>Estado</div></div>
+          <div><i class="fa fa-square fa-navbar font-30px" 
+            ng-class="Profile.currentUser.habilidad"></i> <div>Habilidad</div></div>
+          <div><i class="fa fa-square fa-navbar font-30px" 
+            ng-class="Profile.currentUser.tactica"></i> <div>Tactica</div></div>
+        </div>
+      </div> 
+
+      <div class="form-group row font-20px">
+        <label for="edad" class="col-sm-2 col-form-label col-form-label-lg">Zona</label>
+        <div class="col-sm-10">
+          <iframe
+            width="100%"
+            height="300"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key= AIzaSyA3t75GJakScXK6VIOF6ecs4Op_zBW8AGo&q=Colombres+243" allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+   
+    </div>
+
+
+
+
+  </div>
+</div>

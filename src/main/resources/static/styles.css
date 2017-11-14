@@ -1,0 +1,65 @@
+.font-20px {
+    font-size: 20px;
+} 
+
+.font-35px {
+    font-size: 35px;
+} 
+
+.font-30px {
+    font-size: 30px;
+} 
+
+.ROJO {
+    color: red;
+} 
+
+.AMARILLO {
+    color: yellow;
+} 
+
+.VERDE {
+    color: green;
+} 
+
+.display-flex {
+    display: flex; 
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-justify {
+    justify-content: space-around; /* | space-around */
+}
+
+.flex-center {
+    justify-content: center; 
+}
+
+.caracteristicasContainer i,
+.shadowIcon {
+    text-shadow: 0px 0px 3px #000;
+}
+
+.caracteristicasContainer > div > div > div {
+    font-size: 20px;
+    padding-left: 5px;
+    display: inline;
+}
+
+.backgroundFutbol {
+	background: url(futbol.jpeg);
+	color: whitesmoke;
+    background-size: cover;
+}
+
+.profileContainer, .searchContainer {
+    background: none!important;
+    padding: 30px;
+}
+
+.pointer {
+    cursor: pointer;
+}

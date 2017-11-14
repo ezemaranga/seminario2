@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My App</title>
+
+    <!-- Only required for desktop -->
+    <link rel="stylesheet" href="node_modules/mobile-angular-ui/dist/css/mobile-angular-ui-hover.min.css" />
+
+    <!-- Always required -->
+    <link rel="stylesheet" href="node_modules/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css" />
+
+    <!-- Only required for desktop -->
+    <link rel="stylesheet" href="node_modules/mobile-angular-ui/dist/css/mobile-angular-ui-desktop.min.css" />
+
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="node_modules/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
+    <script src="node_modules/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
+    <script type="text/javascript">
+      var seminario2 = angular.module('seminario2', [
+        'ngRoute',
+        'mobile-angular-ui',
+        'mobile-angular-ui.gestures'
+      ]);
+
+      seminario2.run(function($transform) {
+        window.$transform = $transform;
+      });
+    </script>
+
+    <script src="route.config.js"></script>
+    <script src="controllers/main.controller.js"></script>
+    <script src="controllers/login.controller.js"></script>
+    <script src="controllers/search.controller.js"></script>
+    <script src="controllers/profile.controller.js"></script>
+
+    <script src="services/profile.service.js"></script>
+    <script src="services/search.service.js"></script>
+
+
+    <link rel="stylesheet" href="styles.css" />
+    
+  </head>
+  <body ng-app="seminario2" ng-controller="MainController as main" ui-prevent-touchmove-defaults>
+
+    <!-- Sidebars -->
+    <div ng-include="'views/sidebar.html'"
+        ui-track-as-search-param="true"
+        class="sidebar sidebar-left"></div>
+
+    <div class="app"
+        ui-swipe-right="Ui.turnOn('uiSidebarLeft')"
+        ui-swipe-left="Ui.turnOff('uiSidebarLeft')">
+
+      <!-- title -->
+      <div class="navbar navbar-app navbar-absolute-top">
+        <div class="btn-group pull-left">
+          <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
+            <i class="fa fa-bars"></i> Menu
+          </div>
+        </div>
+      </div>
+
+
+      <!-- App body -->
+      <div class="app-body" ng-class="{loading: loading}">
+        <div ng-show="loading" class="app-content-loading">
+          <i class="fa fa-spinner fa-spin loading-spinner"></i>
+        </div>
+        <div class="app-content backgroundFutbol">
+          <ng-view></ng-view>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fixed menu -->
+    <div class="navbar navbar-app navbar-absolute-bottom">
+      <div class="btn-group justified">
+        <div ng-click="main.profile()" class="btn btn-navbar"><i class="fa fa-user fa-navbar font-20px"></i></div>
+        <div ng-click="main.search()" class="btn btn-navbar"><i class="fa fa-search fa-navbar font-20px"></i></div>
+        <div ng-click="main.a()" class="btn btn-navbar"><i class="fa fa-exclamation-circle fa-navbar font-20px"></i></div>
+      </div>
+    </div>
+
+    <!-- Modals and Overlays -->
+    <div ui-yield-to="modals"></div>
+  </body>
+</html>
