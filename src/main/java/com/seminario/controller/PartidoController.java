@@ -13,6 +13,8 @@ import com.seminario.model.Partido;
 import com.seminario.model.Postulacion;
 import com.seminario.partido.dto.AceptarJugadorRequest;
 import com.seminario.partido.dto.AceptarJugadorResponse;
+import com.seminario.partido.dto.BorrarPartidoRequest;
+import com.seminario.partido.dto.BorrarPartidoResponse;
 import com.seminario.partido.dto.BuscarPartidoRequest;
 import com.seminario.partido.dto.BuscarPartidoResponse;
 import com.seminario.partido.dto.CrearPartidoRequest;
@@ -106,5 +108,20 @@ public class PartidoController {
 		
 		return response;
     }
+	
+	@RequestMapping(value = "/borrar", method = RequestMethod.POST)
+    public BorrarPartidoResponse borrarPartido (@RequestBody BorrarPartidoRequest request) {
+		BorrarPartidoResponse response = new BorrarPartidoResponse();
+		
+		Partido partido  = partidoRepository.findById(request.getIdPartido());
+		
+		partidoRepository.delete(partido);
+		
+		response.setCodigoRespuesta(12);
+		response.setMensaje("OK");
+		
+		return response;
+    }
+
 
 }

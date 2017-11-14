@@ -18,6 +18,9 @@ public class Partido {
 	private String superficie;
 	private String direccion;
 	private boolean jugado;
+	private String dia;
+	private String horario;
+	private String lugar;
 
 	public String getTipo() {
 		return tipo;
@@ -73,6 +76,30 @@ public class Partido {
 
 	public void setJugado(boolean jugado) {
 		this.jugado = jugado;
+	}
+
+	public String getDia() {
+		return dia;
+	}
+
+	public void setDia(String dia) {
+		this.dia = dia;
+	}
+
+	public String getHorario() {
+		return horario;
+	}
+
+	public void setHorario(String horario) {
+		this.horario = horario;
+	}
+
+	public String getLugar() {
+		return lugar;
+	}
+
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
 	}
 
 }
