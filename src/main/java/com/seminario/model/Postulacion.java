@@ -1,6 +1,13 @@
-package com.seminario.partido.dto;
+package com.seminario.model;
 
-public class PostularmePartidoRequest {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "postulaciones")
+public class Postulacion {
+	
+	@Id
+    public String id;
 	
 	private String idPartido;
 	private String idJugador;

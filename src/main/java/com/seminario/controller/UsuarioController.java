@@ -51,7 +51,7 @@ public class UsuarioController {
 		userRepository.save(usuario);
 		
 		response.setCodigoRespuesta(1);
-		response.setMensaje("Usuario registrado correctamente.");
+		response.setMensaje("OK");
         return response;
     }
 	
@@ -83,7 +83,7 @@ public class UsuarioController {
 		
 		userRepository.save(request.getUsuario());
 		response.setCodigoRespuesta(4);
-		response.setMensaje("El usuario se guardo correctamente.");
+		response.setMensaje("OK");
 		
         return response;
     }
@@ -91,14 +91,15 @@ public class UsuarioController {
 	@RequestMapping(value = "/valorar", method = RequestMethod.POST)
     public ValorarUsuarioResponse valorar(@RequestBody ValorarUsuarioRequest request) {
 		ValorarUsuarioResponse response = new ValorarUsuarioResponse();
-		
-		Usuario usuario = userRepository.findById(request.getIdUsuarioJugador());
-		
+
 		Partido partido = partidoRepository.findById(request.getIdPartido());
 		partido.setJugado(request.isJugado());
 		partidoRepository.save(partido);
 		
-		List<Partido> partidos = partidoRepository.findByIdUsuarioJugador(request.getIdUsuarioJugador());
+		Usuario usuario = userRepository.findById(partido.getIdUsuarioJugador());
+		
+		
+		List<Partido> partidos = partidoRepository.findByIdUsuarioJugador(partido.getIdUsuarioJugador());
 		
 		int nuevaReputacion = calcularReputacion(partidos.size(), usuario.getReputacion(), request.getReputacion());
 		usuario.setReputacion(nuevaReputacion);
@@ -120,14 +121,14 @@ public class UsuarioController {
 			
 			if(nuevoPremio) {
 				Premio premio = new Premio();
-				premio.setIdUsuario(request.getIdUsuarioJugador());
+				premio.setIdUsuario(partido.getIdUsuarioJugador());
 				premio.setPremioNombre(premioNombre);
 				premioRepository.save(premio);
 			}
 		}
 		
 		response.setCodigoRespuesta(5);
-		response.setMensaje("La valoracion se envio correctamente.");
+		response.setMensaje("OK");
         return response;
     }
 	

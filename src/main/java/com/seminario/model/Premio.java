@@ -8,6 +8,7 @@ public class Premio {
 	
 	@Id
     public String id;
+	
 	private String idUsuario;
 	private PremioNombre premioNombre;
 	
