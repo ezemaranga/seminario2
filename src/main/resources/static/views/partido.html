@@ -1,0 +1,46 @@
+<div class="scrollable">
+  <div class="scrollable-content section partidoContainer">
+
+    <div ng-if="!Partido.partidoCreado">
+      <h1>Crear Partido</h1>
+      <form role="form" ng-submit="Partido.crearPartido()">
+        <fieldset>
+          <div class="form-group has-success has-feedback">
+            <label>Horario</label>
+            <input type="text"
+                    ng-model="Partido.nuevoPartido.horario"
+                    class="form-control"
+                    placeholder="Horario">
+          </div>
+  
+          <div class="form-group has-success has-feedback">
+            <label>Dia</label>
+            <input type="text"
+                    ng-model="Partido.nuevoPartido.dia"
+                    class="form-control"
+                    placeholder="Dia">
+          </div>
+
+          <div class="form-group has-success has-feedback">
+            <label>Lugar</label>
+            <input type="text"
+                    ng-model="Partido.nuevoPartido.lugar"
+                    class="form-control"
+                    placeholder="Lugar">
+          </div>
+
+        </fieldset>
+    
+        <button class="btn btn-primary btn-block" ng-click="Partido.crearPartido()">
+          Crear
+        </button>
+        
+      </form>
+    </div>
+
+    <div ng-if="Partido.partidoCreado">
+      <h1>Postulados</h1>
+    </div>
+
+  </div>
+</div>

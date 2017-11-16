@@ -9,8 +9,10 @@ seminario2.controller('SearchController', function($scope, $location, SearchServ
     }
 
     function getPartidos() {
+        vm.loading = true;
         SearchService.buscarPartidos().then(function (data) {
                 vm.partidos = data;
+                vm.loading = false;
         });
     }
 

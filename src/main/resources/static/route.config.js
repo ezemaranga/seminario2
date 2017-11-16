@@ -18,6 +18,12 @@ seminario2.config(function($routeProvider) {
         controllerAs : "Search",
         reloadOnSearch: false
     })
+    .when("/partido", {
+        templateUrl : "views/partido.html",
+        controller : "PartidoController",
+        controllerAs : "Partido",
+        reloadOnSearch: false
+    })
     .otherwise({
         redirectTo: '/login', 
         reloadOnSearch: false

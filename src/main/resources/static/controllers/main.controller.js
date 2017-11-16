@@ -14,6 +14,10 @@ seminario2.controller('MainController', function($rootScope, $scope, $location) 
         $location.path( "/profile" );
     }
 
+    vm.partidos = function() {
+        $location.path( "/partido" );
+    }
+
     vm.search = function() {
         $location.path( "/search" );
     }

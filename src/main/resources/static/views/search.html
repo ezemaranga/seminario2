@@ -1,7 +1,7 @@
 <div class="scrollable">
   <div class="scrollable-content section searchContainer">
 
-    <h1>Partidos</h1>
+    <h1>Partidos <img ng-if="Search.loading" style="width: 40px;" src="../loading.gif" /></h1>
     
     <div class="panel-group" ui-state="myAccordion">
       <div class="panel panel-default" ng-repeat="partido in Search.partidos">
