@@ -12,20 +12,6 @@ seminario2.controller('ProfileController', function($scope, $location, ProfileSe
         });
     }
 
-    vm.getColorCard = function(value) {
-        var color;
-
-        if (value == 1) {
-            color = 'red';
-        } else if (value == 2) {
-            color = 'yellow';
-        } else {
-            color = 'green';
-        }
-
-        return color;
-    }
-
     function getStar(num) {
         var aux = num * 2;
         if(aux <= vm.currentUser.calificacion) {
@@ -35,7 +21,6 @@ seminario2.controller('ProfileController', function($scope, $location, ProfileSe
         } else {
             return 'fa-star-half-o'
         }
-            
     }
 
     init();

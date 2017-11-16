@@ -6,8 +6,9 @@
       <form role="form" ng-submit="Partido.crearPartido()">
         <fieldset>
           <div class="form-group has-success has-feedback">
+            <div>{{Partido.nuevoPartido.horario | date: "HH:mm"}}</div>
             <label>Horario</label>
-            <input type="text"
+            <input type="time"
                     ng-model="Partido.nuevoPartido.horario"
                     class="form-control"
                     placeholder="Horario">
@@ -15,7 +16,7 @@
   
           <div class="form-group has-success has-feedback">
             <label>Dia</label>
-            <input type="text"
+            <input type="date"
                     ng-model="Partido.nuevoPartido.dia"
                     class="form-control"
                     placeholder="Dia">
@@ -29,8 +30,51 @@
                     placeholder="Lugar">
           </div>
 
+          <div class="form-group has-success has-feedback">
+            <label>Tipo</label>
+            <select ng-model="Partido.nuevoPartido.tipo" class="form-control">
+              <option value="">Elija un tipo de partido...</option>
+              <option value="5">5</option>
+              <option value="7">7</option>
+              <option value="9">9</option>
+              <option value="11">11</option>
+            </select> 
+          </div>
+
+          <div class="form-group has-success has-feedback">
+            <label>Superficie</label>
+            <select ng-model="Partido.nuevoPartido.superficie" class="form-control">
+              <option value="">Elija un tipo de superficie...</option>
+              <option value="Sintetico">Sintético</option>
+              <option value="Cemento">Cemento</option>
+              <option value="Cesped">Cesped</option>
+              <option value="Madera">Madera</option>
+            </select> 
+          </div>
+
+          <label>Características buscadas</label>
+          <div class="display-flex flex-justify caracteristicasContainer">
+            <div class="display-flex flex-column">
+              <div><i class="fa fa-square fa-navbar font-30px" 
+                ng-class="Partido.nuevoPartido.habilidades.ataja"></i> <div>Ataja</div></div>
+              <div><i class="fa fa-square fa-navbar font-30px" 
+                ng-class="Partido.nuevoPartido.habilidades.defensa"></i> <div>Defensa</div></div>
+              <div><i class="fa fa-square fa-navbar font-30px" 
+                ng-class="Partido.nuevoPartido.habilidades.ataque"></i> <div>Ataque</div></div>
+            </div>
+            <div class="display-flex flex-column">
+              <div><i class="fa fa-square fa-navbar font-30px" 
+                ng-class="Partido.nuevoPartido.habilidades.estado"></i> <div>Estado</div></div>
+              <div><i class="fa fa-square fa-navbar font-30px" 
+                ng-class="Partido.nuevoPartido.habilidades.habilidad"></i> <div>Habilidad</div></div>
+              <div><i class="fa fa-square fa-navbar font-30px" 
+                ng-class="Partido.nuevoPartido.habilidades.tactica"></i> <div>Tactica</div></div>
+            </div>
+          </div> 
+
         </fieldset>
     
+
         <button class="btn btn-primary btn-block" ng-click="Partido.crearPartido()">
           Crear
         </button>
