@@ -1,6 +1,7 @@
 package com.seminario.model;
 
 import java.util.Date;
+import java.util.HashMap;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,6 +22,15 @@ public class Partido {
 	private String dia;
 	private String horario;
 	private String lugar;
+	private HashMap<String,String> habilidades;
+
+	public HashMap<String,String> getHabilidades() {
+		return habilidades;
+	}
+
+	public void setHabilidades(HashMap<String,String> habilidades) {
+		this.habilidades = habilidades;
+	}
 
 	public String getTipo() {
 		return tipo;

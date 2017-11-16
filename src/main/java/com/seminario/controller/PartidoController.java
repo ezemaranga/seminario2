@@ -1,5 +1,6 @@
 package com.seminario.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import com.seminario.partido.dto.BorrarPartidoRequest;
 import com.seminario.partido.dto.BorrarPartidoResponse;
 import com.seminario.partido.dto.BuscarPartidoPorOrganizadorRequest;
 import com.seminario.partido.dto.BuscarPartidoPorOrganizadorResponse;
+import com.seminario.partido.dto.BuscarPartidosPorHabilidadesRequest;
+import com.seminario.partido.dto.BuscarPartidosPorHabilidadesResponse;
 import com.seminario.partido.dto.CrearPartidoRequest;
 import com.seminario.partido.dto.CrearPartidoResponse;
 import com.seminario.partido.dto.PostulacionesPartidoResponse;
@@ -37,11 +40,20 @@ public class PartidoController {
 	@Autowired
 	private PostulacionRepository postulacionRepository;
 	
-	@RequestMapping(value = "/buscarporid", method = RequestMethod.POST)
-    public BuscarPartidoPorOrganizadorResponse buscarPorId(@RequestBody BuscarPartidoPorOrganizadorRequest request) {
+	@RequestMapping(value = "/buscarpartidoporidorg", method = RequestMethod.POST)
+    public BuscarPartidoPorOrganizadorResponse buscarPartidosPorIdOrganizador(@RequestBody BuscarPartidoPorOrganizadorRequest request) {
 		BuscarPartidoPorOrganizadorResponse response = new BuscarPartidoPorOrganizadorResponse();
 		Partido partido = partidoRepository.findByIdUsuarioOrganizador(request.getIdUsuarioOrganizador());
 		response.setPartidos(partido);
+		return response;
+    }
+	
+	@RequestMapping(value = "/buscarpartidosporhabilidades", method = RequestMethod.POST)
+    public BuscarPartidosPorHabilidadesResponse buscarPartidosPorHabilidades(@RequestBody BuscarPartidosPorHabilidadesRequest request) {
+		BuscarPartidosPorHabilidadesResponse response = new BuscarPartidosPorHabilidadesResponse();
+		List<Partido> partidos = partidoRepository.findAll();
+		
+		response.setPartidos(partidos);
 		return response;
     }
 	
