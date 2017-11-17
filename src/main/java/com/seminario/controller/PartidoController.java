@@ -1,8 +1,17 @@
 package com.seminario.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
-
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -120,9 +129,14 @@ public class PartidoController {
     }
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
-    public GetAllPartidosResponse getAll() {
+    public GetAllPartidosResponse getAll(@RequestParam("lat") Double lat, @RequestParam("lon") Double lon ) {
 		GetAllPartidosResponse response = new GetAllPartidosResponse();
 		List<Partido> partidos = partidoRepository.findAll();
+		if (lat != null && lon != null)
+			partidos = getMatchDistance(lat, lon, partidos);
+		else
+			//Por si falla el get de coordenadas
+			partidos = getMatchDistance(-34.614362, -58.4234552, partidos);
 		response.setPartidos(partidos);
         return response;
     }
@@ -158,5 +172,91 @@ public class PartidoController {
 		return response;
     }
 
+	public List<Partido> getMatchDistance(double d, double e2, List<Partido> partidos) {
+		// String apiKey = "AIzaSyBXuoucteWIPZ5I68RhZe-x-We2xktuGWs";
+		String apiKey = "AIzaSyDDCuxOg63WU4nGq9Vdxi59WNv3pwui62g";
+		String direccion = Double.toString(d) + ',' + Double.toString(e2);
+		String destination = "";
+		for (Partido p : partidos) {
+			if (p.getDireccion() != null) {
+				destination += p.getDireccion();
+				destination += ", Buenos Aires, Ciudad Autónoma de Buenos Aires";
+				destination += "|";
+			}
+		}
+		destination = destination.replaceAll(" ", "+");
+		destination.substring(0, destination.length() - 1);
+
+		URL apiCall;
+		String response = "";
+
+		try {
+			apiCall = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + direccion
+					+ "&destinations=" + destination + "&language=es&key=" + apiKey);
+			response = apiGet(apiCall);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		
+		String value = "";
+		String text = "";
+		JSONObject jsonObj;
+		JSONArray array;
+		JSONObject jsonObj2;
+		JSONArray array2 = null;
+		
+		try {
+			jsonObj = new JSONObject(response);
+			array = jsonObj.getJSONArray("rows");
+			jsonObj2 = array.getJSONObject(0);
+			array2 = jsonObj2.getJSONArray("elements");
+		} catch (JSONException e1) {
+			e1.printStackTrace();
+		}
+
+		int i = 0;
+		for (Partido p : partidos) {
+			if (p.getDireccion() != null) {
+				try {
+					JSONObject distance = (JSONObject) ((JSONObject) array2.getJSONObject(i)).get("distance");
+					value = ((JSONObject) distance).get("value").toString();
+					text = ((JSONObject) distance).get("text").toString();
+				} catch (Exception e) {
+					value = "999999";
+					text = "99999 km";
+				}
+				p.setDistancia(Double.valueOf(value));
+				p.setDistanciaString(text);
+				i++;
+			}
+		}
+		return partidos;
+	}
+
+	public String apiGet(URL url) {
+		HttpURLConnection con;
+		try {
+			con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("GET");
+
+			int responseCode = con.getResponseCode();
+			System.out.println("Sending get request : " + url);
+			System.out.println("Response code : " + responseCode);
+
+			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			String output;
+			StringBuffer response = new StringBuffer();
+
+			while ((output = in.readLine()) != null) {
+				response.append(output);
+			}
+			in.close();
+
+			System.out.println(response.toString());
+			return response.toString();
+		} catch (IOException e) {
+			return "";
+		}
+	}
 
 }

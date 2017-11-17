@@ -23,6 +23,24 @@ public class Partido {
 	private String horario;
 	private String lugar;
 	private HashMap<String,String> habilidades;
+	private Double distancia;
+	private String distanciaString;
+
+	public String getDistanciaString() {
+		return distanciaString;
+	}
+
+	public void setDistanciaString(String distanciaString) {
+		this.distanciaString = distanciaString;
+	}
+
+	public Double getDistancia() {
+		return distancia;
+	}
+
+	public void setDistancia(Double distancia) {
+		this.distancia = distancia;
+	}
 
 	public HashMap<String,String> getHabilidades() {
 		return habilidades;

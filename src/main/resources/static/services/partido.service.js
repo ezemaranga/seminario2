@@ -16,7 +16,7 @@
 
 			var deferred = $q.defer();
 
-			$http.get('/partidos/all').then(
+			$http.get('/partidos/all?lat=-34.614362&lon=-58.4234552').then(
 					function(data) {
 						if (data.status != 200) {
 							deferred.reject(data);
