@@ -1,15 +1,15 @@
 package com.seminario.partido.dto;
 
-import java.util.List;
+import java.util.HashMap;
 
 public class BuscarPartidosPorHabilidadesRequest {
-	private List<String> habilidades;
+	private HashMap<String,String> habilidades;
 
-	public List<String> getHabilidades() {
+	public HashMap<String,String> getHabilidades() {
 		return habilidades;
 	}
 
-	public void setHabilidades(List<String> habilidades) {
+	public void setHabilidades(HashMap<String,String> habilidades) {
 		this.habilidades = habilidades;
 	}
 }

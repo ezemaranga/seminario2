@@ -1,5 +1,6 @@
 package com.seminario.partido.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.seminario.model.Partido;
@@ -8,7 +9,7 @@ public class BuscarPartidosPorHabilidadesResponse {
 
 	private int codigoRespuesta;
 	private String mensaje;
-	private List<Partido> partidos;
+	private List<Partido> partidos = new ArrayList<Partido>();
 	
 	public int getCodigoRespuesta() {
 		return codigoRespuesta;
@@ -27,6 +28,10 @@ public class BuscarPartidosPorHabilidadesResponse {
 	}
 	public void setPartidos(List<Partido> partidos) {
 		this.partidos = partidos;
+	}
+	
+	public void addPartido(Partido partido) {
+		partidos.add(partido);
 	}
 	
 }
