@@ -1,4 +1,4 @@
-seminario2.controller('PartidoController', function($scope, $location) {
+seminario2.controller('PartidoController', function($scope, $location, PartidoService) {
     
         var vm = this;
         
@@ -14,7 +14,18 @@ seminario2.controller('PartidoController', function($scope, $location) {
 				estado: "VERDE",
 				habilidad: "VERDE",
 				tactica: "ROJO"
-            }
+            },
+            fechaHora: null,
+            idUsuarioOrganizador: 1,
+            idUsuarioJugador: 2,
+            jugado: false
         };
+
+        vm.crearPartido = function() {
+            console.log(vm.nuevoPartido);
+            PartidoService.crearPartido(vm.nuevoPartido).then(function (data) {
+                console.log(data);
+            });
+        }
         
     });
