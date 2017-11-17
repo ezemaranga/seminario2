@@ -52,8 +52,30 @@ public class PartidoController {
     public BuscarPartidosPorHabilidadesResponse buscarPartidosPorHabilidades(@RequestBody BuscarPartidosPorHabilidadesRequest request) {
 		BuscarPartidosPorHabilidadesResponse response = new BuscarPartidosPorHabilidadesResponse();
 		List<Partido> partidos = partidoRepository.findAll();
-		
-		response.setPartidos(partidos);
+		HashMap<String,Integer> habilidadesEnNumeros = new HashMap<String,Integer>();
+		habilidadesEnNumeros.put("ROJO", 0);
+		habilidadesEnNumeros.put("AMARILLO", 1);
+		habilidadesEnNumeros.put("VERDE", 2);
+		for (Partido p : partidos) {
+			Boolean add = true;
+			HashMap<String, String> habilidadesDelPartido = p.getHabilidades();
+			if(habilidadesEnNumeros.get(habilidadesDelPartido.get("estado")) > habilidadesEnNumeros.get(request.getHabilidades().get("estado")))
+				add = false;
+			if(habilidadesEnNumeros.get(habilidadesDelPartido.get("ataque")) > habilidadesEnNumeros.get(request.getHabilidades().get("ataque")))
+				add = false;
+			if(habilidadesEnNumeros.get(habilidadesDelPartido.get("ataja")) > habilidadesEnNumeros.get(request.getHabilidades().get("ataja")))
+				add = false;
+			if(habilidadesEnNumeros.get(habilidadesDelPartido.get("defensa")) > habilidadesEnNumeros.get(request.getHabilidades().get("defensa")))
+				add = false;
+			if(habilidadesEnNumeros.get(habilidadesDelPartido.get("habilidad")) > habilidadesEnNumeros.get(request.getHabilidades().get("habilidad")))
+				add = false;
+			if(habilidadesEnNumeros.get(habilidadesDelPartido.get("tactica")) > habilidadesEnNumeros.get(request.getHabilidades().get("tactica")))
+				add = false;
+			System.out.println(habilidadesEnNumeros.get(habilidadesDelPartido.get("estado")));
+			System.out.println(habilidadesEnNumeros.get(request.getHabilidades().get("estado")));
+			if (add)
+				response.addPartido(p);
+		}
 		return response;
     }
 	
