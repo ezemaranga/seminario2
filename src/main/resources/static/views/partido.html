@@ -1,7 +1,9 @@
 <div class="scrollable">
   <div class="scrollable-content section partidoContainer">
 
+    <!-- Si no hay partido creado, muestro el form para crear partido -->
     <div ng-if="!Partido.partidoCreado">
+
       <h1>Crear Partido</h1>
       <form role="form" ng-submit="Partido.crearPartido()">
         <fieldset>
@@ -71,19 +73,35 @@
                 ng-class="Partido.nuevoPartido.habilidades.tactica"></i> <div>Tactica</div></div>
             </div>
           </div> 
-
         </fieldset>
     
-
         <button class="btn btn-primary btn-block" ng-click="Partido.crearPartido()">
           Crear
         </button>
-        
       </form>
+
     </div>
 
+
+    <!-- Si hay partido creado, muestro los postulados a mi partido -->
     <div ng-if="Partido.partidoCreado">
+
       <h1>Postulados</h1>
+      <div class="panel-group" ui-state="myAccordion">
+        <div class="panel panel-default" ng-repeat="p in Partido.postulados">
+          <div class="panel-heading pointer" ui-set="{'myAccordion': p.id}">
+            <h4 class="panel-title">
+              <div>{{p.nombre}}</div>
+            </h4>
+          </div>
+          <div ui-if="myAccordion == {{p.id}}">
+            <div class="panel-body">
+              <!-- Datos del postulado -->
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
