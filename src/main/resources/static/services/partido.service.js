@@ -11,7 +11,8 @@
 			buscarPartidos : buscarPartidos,
 			crearPartido : crearPartido,
 			postularme: postularme,
-			organizados: organizados
+			organizados: organizados,
+			getPostulados: getPostulados
 		};
 
 		function buscarPartidos(params) {
@@ -79,6 +80,24 @@
 			var deferred = $q.defer();
 
 			$http.get('/partidos/organizados?idOrganizador=' + usuarioId).then(
+					function(data) {
+						if (data.status != 200) {
+							deferred.reject(data);
+						}
+
+						deferred.resolve(data.data);
+					}, function(data) {
+				deferred.reject(data);
+			});
+
+			return deferred.promise;
+		}
+
+		function getPostulados(idPartido) {
+			
+			var deferred = $q.defer();
+
+			$http.get('/partidos/postulaciones?idPartido=' + idPartido).then(
 					function(data) {
 						if (data.status != 200) {
 							deferred.reject(data);

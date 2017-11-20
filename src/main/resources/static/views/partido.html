@@ -94,7 +94,7 @@
           <div class="panel panel-default" ng-repeat="p in Partido.postulados">
             <div class="panel-heading pointer" ui-set="{'myAccordion': p.id}">
               <h4 class="panel-title">
-                <div>{{p.nombre}}</div>
+                <div>{{p.username}}</div>
               </h4>
             </div>
             <div ui-if="myAccordion == {{p.id}}">

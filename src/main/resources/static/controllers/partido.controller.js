@@ -13,6 +13,9 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
         PartidoService.organizados(vm.currentUser.id).then(function(data) {
             if(data.partido) {
                 vm.partidoCreado = true;
+                PartidoService.getPostulados(data.partido.id).then(function(data1) {
+                    vm.postulados = data1.postulados;
+                });
             } else {
                 vm.partidoCreado = false;
             }
