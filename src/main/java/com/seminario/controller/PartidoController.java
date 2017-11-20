@@ -26,7 +26,6 @@ import com.seminario.partido.dto.AceptarJugadorRequest;
 import com.seminario.partido.dto.AceptarJugadorResponse;
 import com.seminario.partido.dto.BorrarPartidoRequest;
 import com.seminario.partido.dto.BorrarPartidoResponse;
-import com.seminario.partido.dto.BuscarPartidoPorOrganizadorRequest;
 import com.seminario.partido.dto.BuscarPartidoPorOrganizadorResponse;
 import com.seminario.partido.dto.BuscarPartidosPorHabilidadesRequest;
 import com.seminario.partido.dto.BuscarPartidosPorHabilidadesResponse;
@@ -50,10 +49,10 @@ public class PartidoController {
 	@Autowired
 	private PostulacionRepository postulacionRepository;
 	
-	@RequestMapping(value = "/organizados", method = RequestMethod.POST)
-    public BuscarPartidoPorOrganizadorResponse buscarPartidosPorIdOrganizador(@RequestBody BuscarPartidoPorOrganizadorRequest request) {
+	@RequestMapping(value = "/organizados", method = RequestMethod.GET)
+    public BuscarPartidoPorOrganizadorResponse buscarPartidosPorIdOrganizador(@RequestParam String idOrganizador) {
 		BuscarPartidoPorOrganizadorResponse response = new BuscarPartidoPorOrganizadorResponse();
-		Partido partido = partidoRepository.findByIdUsuarioOrganizador(request.getIdUsuarioOrganizador());
+		Partido partido = partidoRepository.findByIdUsuarioOrganizador(idOrganizador);
 		response.setPartidos(partido);
 		return response;
     }
