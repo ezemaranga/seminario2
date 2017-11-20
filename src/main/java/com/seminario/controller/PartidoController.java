@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -132,15 +135,31 @@ public class PartidoController {
     public GetAllPartidosResponse getAll(@RequestParam("lat") Double lat, @RequestParam("lon") Double lon ) {
 		GetAllPartidosResponse response = new GetAllPartidosResponse();
 		List<Partido> partidos = partidoRepository.findAll();
-		if (lat != null && lon != null)
+		if (lat != null && lon != null) {
 			partidos = getMatchDistance(lat, lon, partidos);
-		else
+			partidos = orderMatchesByDateAndDistance(partidos);
+		} else {
 			//Por si falla el get de coordenadas
 			partidos = getMatchDistance(-34.614362, -58.4234552, partidos);
+		}
 		response.setPartidos(partidos);
         return response;
     }
 	
+	class PartidoDistancia{
+		int id;
+		int distancia;
+		public PartidoDistancia(int id, int distancia) {
+			this.id = id;
+			this.distancia = distancia; 
+		}
+	}
+	
+	private List<Partido> orderMatchesByDateAndDistance(List<Partido> partidos) {
+		partidos.sort(Comparator.comparing((Partido p) -> p.getDia()).thenComparing(p->p.getHorario()).thenComparing(p->p.getDistancia()));
+		return partidos;
+	}
+
 	@RequestMapping(value = "/aceptar", method = RequestMethod.POST)
     public AceptarJugadorResponse postularme(@RequestBody AceptarJugadorRequest request) {
 		AceptarJugadorResponse response = new AceptarJugadorResponse();
