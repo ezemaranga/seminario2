@@ -1,0 +1,62 @@
+<div class="scrollable">
+  <div class="scrollable-content section profileContainer">
+    
+    <h1>Perfil de <b>{{Profile.currentUser.username}}</b>
+      <img ng-if="Profile.loading" style="width: 40px;" src="../loading.gif" />
+    </h1>
+    <div>
+
+      <div class="form-group row font-20px">
+        <label class="col-sm-2 col-form-label col-form-label-lg">Email</label>
+        <input type="email"
+                ng-model="Profile.currentUser.email"
+                class="form-control"
+                placeholder="Enter email" required>
+      </div>
+      <div class="form-group row font-20px">
+        <label for="edad" class="col-sm-2 col-form-label col-form-label-lg">Edad</label>
+        <input type="number"
+                ng-model="Profile.currentUser.edad"
+                class="form-control"
+                placeholder="Edad" required>
+      </div>
+
+      <div class="form-group row font-20px">
+        <label for="edad" class="col-sm-2 col-form-label col-form-label-lg">Direccion</label>
+        <input type="text"
+                ng-model="Profile.currentUser.direccion"
+                class="form-control"
+                placeholder="Direccion" required>
+      </div>
+
+      <h2>Características</h2>
+      <div class="display-flex flex-justify caracteristicasContainer">
+        <div class="display-flex flex-column">
+          <div class="pointer"><i class="fa fa-square fa-navbar font-30px" 
+            ng-class="Profile.currentUser.ataja" ng-click="Profile.editHabilidad(Profile.currentUser.ataja, 'ataja')"></i> <div>Ataja</div></div>
+          <div class="pointer"><i class="fa fa-square fa-navbar font-30px" 
+            ng-class="Profile.currentUser.defensa" ng-click="Profile.editHabilidad(Profile.currentUser.defensa, 'defensa')"></i> <div>Defensa</div></div>
+          <div class="pointer"><i class="fa fa-square fa-navbar font-30px" 
+            ng-class="Profile.currentUser.ataque" ng-click="Profile.editHabilidad(Profile.currentUser.ataque, 'ataque')"></i> <div>Ataque</div></div>
+        </div>
+        <div class="display-flex flex-column">
+          <div class="pointer"><i class="fa fa-square fa-navbar font-30px" 
+            ng-class="Profile.currentUser.estado" ng-click="Profile.editHabilidad(Profile.currentUser.estado, 'estado')"></i> <div>Estado</div></div>
+          <div class="pointer"><i class="fa fa-square fa-navbar font-30px" 
+            ng-class="Profile.currentUser.habilidad" ng-click="Profile.editHabilidad(Profile.currentUser.habilidad, 'habilidad')"></i> <div>Habilidad</div></div>
+          <div class="pointer"><i class="fa fa-square fa-navbar font-30px" 
+            ng-class="Profile.currentUser.tactica" ng-click="Profile.editHabilidad(Profile.currentUser.tactica, 'tactica')"></i> <div>Tactica</div></div>
+        </div>
+      </div> 
+
+      <br/>
+
+      <button class="btn btn-primary btn-block" ng-click="Profile.editUser()">Editar Usuario</button>
+   
+    </div>
+
+
+
+
+  </div>
+</div>
