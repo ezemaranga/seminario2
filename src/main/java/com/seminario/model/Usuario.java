@@ -21,7 +21,8 @@ public class Usuario {
 	private ValoracionJugador habilidad;
 	private ValoracionJugador tactica;
 	private int reputacion;
-	
+	private String video;
+
 	public String getUsername() {
 		return username;
 	}
@@ -93,6 +94,12 @@ public class Usuario {
 	}
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+	public String getVideo() {
+		return video;
+	}
+	public void setVideo(String video) {
+		this.video = video;
 	}
 	
 }
