@@ -6,12 +6,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,7 +50,7 @@ public class PartidoController {
 	@Autowired
 	private PostulacionRepository postulacionRepository;
 	
-	@RequestMapping(value = "/buscarpartidoporidorg", method = RequestMethod.POST)
+	@RequestMapping(value = "/organizados", method = RequestMethod.POST)
     public BuscarPartidoPorOrganizadorResponse buscarPartidosPorIdOrganizador(@RequestBody BuscarPartidoPorOrganizadorRequest request) {
 		BuscarPartidoPorOrganizadorResponse response = new BuscarPartidoPorOrganizadorResponse();
 		Partido partido = partidoRepository.findByIdUsuarioOrganizador(request.getIdUsuarioOrganizador());
