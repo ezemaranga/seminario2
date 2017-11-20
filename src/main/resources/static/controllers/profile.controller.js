@@ -1,4 +1,4 @@
-seminario2.controller('ProfileController', function($scope, $location, ProfileService) {
+seminario2.controller('ProfileController', function($scope, $location,$sce,ProfileService) {
 
     var vm = this;
 
@@ -6,21 +6,28 @@ seminario2.controller('ProfileController', function($scope, $location, ProfileSe
     vm.editHabilidad = editHabilidad;
     vm.editUser = editUser;
     vm.goToEdit = goToEdit;
+    vm.getMapsURL = getMapsURL;
 
     vm.currentUser = seminario2.controller('MainController').currentUser;
 
-    function init() {
+    if(!vm.currentUser) {
+        $location.path( "/login" );
+    }
 
+    function getMapsURL(direccion) {
+        return $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyA3t75GJakScXK6VIOF6ecs4Op_zBW8AGo&q=' + direccion);
     }
 
     function getStar(num) {
         var aux = num * 2;
-        if(aux <= vm.currentUser.reputacion) {
-            return 'fa-star'
-        } else if (aux-2 >= vm.currentUser.reputacion) {
-            return 'fa-star-o'
-        } else {
-            return 'fa-star-half-o'
+        if(vm.currentUser) {
+            if(aux <= vm.currentUser.reputacion) {
+                return 'fa-star'
+            } else if (aux-2 >= vm.currentUser.reputacion) {
+                return 'fa-star-o'
+            } else {
+                return 'fa-star-half-o'
+            }
         }
     }
 
@@ -45,7 +52,5 @@ seminario2.controller('ProfileController', function($scope, $location, ProfileSe
     function goToEdit() {
         $location.path( "/editProfile" );
     }
-
-    init();
 
 });
