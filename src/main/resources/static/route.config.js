@@ -24,6 +24,18 @@ seminario2.config(function($routeProvider) {
         controllerAs : "Partido",
         reloadOnSearch: false
     })
+    .when("/register", {
+        templateUrl : "views/register.html",
+        controller : "LoginController",
+        controllerAs : "Login",
+        reloadOnSearch: false
+    })
+    .when("/editProfile", {
+        templateUrl : "views/editProfile.html",
+        controller : "ProfileController",
+        controllerAs : "Profile",
+        reloadOnSearch: false
+    })
     .otherwise({
         redirectTo: '/login', 
         reloadOnSearch: false

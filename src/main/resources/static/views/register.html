@@ -1,0 +1,44 @@
+<div ui-content-for="title">
+    <span>Forms</span>
+  </div>
+  
+  <div class="scrollable">
+   <div class="scrollable-content section formContainer">
+     
+    <form role="form">
+      <fieldset>
+        <legend style="color:whitesmoke;">Sign Up <img ng-if="Login.loading" style="width: 40px;" src="../loading.gif" /></legend>
+          <div class="form-group has-success has-feedback">
+            <label>Email</label>
+            <input type="email"
+                   ng-model="Login.nuevoUsuario.email"
+                   class="form-control"
+                   placeholder="Enter email" required>
+          </div>
+  
+          <div class="form-group has-success has-feedback">
+            <label>Username</label>
+            <input type="text"
+                   ng-model="Login.nuevoUsuario.username"
+                   class="form-control"
+                   placeholder="Enter email" required>
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" 
+                   class="form-control"
+                   ng-model="Login.nuevoUsuario.password"
+                   placeholder="Password" required>
+          </div>
+
+      </fieldset>
+      <hr>
+  
+      <button class="btn btn-primary btn-block" ng-disabled="!(Login.nuevoUsuario.email && Login.nuevoUsuario.username && Login.nuevoUsuario.password)" ng-click="Login.signup()">
+        Crear Usuario
+      </button>
+      
+    </form>
+   </div>
+  </div>
