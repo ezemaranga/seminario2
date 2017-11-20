@@ -9,7 +9,8 @@
 
 		var service = {
 			buscarPartidos : buscarPartidos,
-			crearPartido : crearPartido
+			crearPartido : crearPartido,
+			postularme: postularme
 		};
 
 		function buscarPartidos(params) {
@@ -41,6 +42,29 @@
 						}
 
 						deferred.resolve(data.data.partido);
+					}, function(data) {
+				deferred.reject(data);
+			});
+
+			return deferred.promise;
+		}
+
+		function postularme(partidoId, usuarioId) {
+			
+			var deferred = $q.defer();
+
+			var params = {
+				"idPartido": partidoId,
+				"idJugador": usuarioId
+		  	};
+
+			$http.post('/partidos/postularme', params).then(
+					function(data) {
+						if (data.status != 200) {
+							deferred.reject(data);
+						}
+
+						deferred.resolve(data.data);
 					}, function(data) {
 				deferred.reject(data);
 			});

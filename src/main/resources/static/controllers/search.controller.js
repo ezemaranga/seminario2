@@ -28,5 +28,11 @@ seminario2.controller('SearchController', function($scope, $location, PartidoSer
         return $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyA3t75GJakScXK6VIOF6ecs4Op_zBW8AGo&q=' + direccion);
     }
 
+    vm.postularme = function(partidoId) {
+        PartidoService.postularme(partidoId, vm.currentUser.id).then(function (data) {
+            init();
+        });
+    }
+
     init();
 });
