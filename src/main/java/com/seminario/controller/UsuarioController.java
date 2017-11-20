@@ -82,7 +82,7 @@ public class UsuarioController {
 		EditarPerfilUsuarioResponse response = new EditarPerfilUsuarioResponse();
 		
 		userRepository.save(request.getUsuario());
-		response.setCodigoRespuesta(4);
+		response.setCodigoRespuesta(1);
 		response.setMensaje("OK");
 		
         return response;
