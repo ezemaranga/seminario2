@@ -184,7 +184,7 @@ public class PartidoController {
 	}
 
 	@RequestMapping(value = "/aceptar", method = RequestMethod.POST)
-    public AceptarJugadorResponse postularme(@RequestBody AceptarJugadorRequest request) {
+    public AceptarJugadorResponse aceptar(@RequestBody AceptarJugadorRequest request) {
 		AceptarJugadorResponse response = new AceptarJugadorResponse();
 		
 		Postulacion postulacion = postulacionRepository.findById(request.getIdPostulacion());
