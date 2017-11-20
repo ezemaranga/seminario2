@@ -1,6 +1,5 @@
 package com.seminario.model;
 
-import java.util.Date;
 import java.util.HashMap;
 
 import org.springframework.data.annotation.Id;
@@ -15,7 +14,6 @@ public class Partido {
 	private String tipo;
 	private String idUsuarioOrganizador;
 	private String idUsuarioJugador;
-	private Date fechaHora;
 	private String superficie;
 	private String direccion;
 	private boolean jugado;
@@ -72,14 +70,6 @@ public class Partido {
 
 	public void setIdUsuarioJugador(String idUsuarioJugador) {
 		this.idUsuarioJugador = idUsuarioJugador;
-	}
-
-	public Date getFechaHora() {
-		return fechaHora;
-	}
-
-	public void setFechaHora(Date fechaHora) {
-		this.fechaHora = fechaHora;
 	}
 
 	public String getSuperficie() {
