@@ -15,6 +15,7 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
                 vm.partidoCreado = true;
                 PartidoService.getPostulados(data.partido.id).then(function(data1) {
                     vm.postulados = data1.postulados;
+                    vm.idMiPartido = data1.partido.id;
                 });
             } else {
                 vm.partidoCreado = false;
@@ -48,6 +49,12 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
                 var currentPageTemplate = $route.current.templateUrl;
                 $templateCache.remove(currentPageTemplate);
                 $route.reload();
+            });
+        }
+
+        vm.aceptarPostulacion = function(idUsuario) {
+            PartidoService.aceptarPostulacion(idUsuario, vm.idMiPartido).then(function(data) {
+                console.log(data);
             });
         }
         

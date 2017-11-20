@@ -97,9 +97,11 @@
                 <div>{{p.username}}</div>
               </h4>
             </div>
-            <div ui-if="myAccordion == {{p.id}}">
+            <div ui-if="myAccordion == '{{p.id}}'">
               <div class="panel-body">
-                <!-- Datos del postulado -->
+                <button class="btn btn-primary btn-block" ng-click="Partido.aceptarPostulacion(p.id)">
+                  Aceptar Postulacion
+                </button>
               </div>
             </div>
           </div>
