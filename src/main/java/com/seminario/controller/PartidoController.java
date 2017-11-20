@@ -169,6 +169,19 @@ public class PartidoController {
         return response;
     }
 	
+	@RequestMapping(value = "/checkall", method = RequestMethod.GET)
+    public GetAllPartidosResponse checkAll() {
+		GetAllPartidosResponse response = new GetAllPartidosResponse();
+		List<Partido> partidos = partidoRepository.findAll();
+		response.setPartidos(partidos);
+        return response;
+    }
+	
+	@RequestMapping(value = "/removeAll", method = RequestMethod.GET)
+    public void deleteAll() {
+		partidoRepository.deleteAll();
+    }
+	
 	class PartidoDistancia{
 		int id;
 		int distancia;
