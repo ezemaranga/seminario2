@@ -6,12 +6,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,7 +26,6 @@ import com.seminario.partido.dto.AceptarJugadorRequest;
 import com.seminario.partido.dto.AceptarJugadorResponse;
 import com.seminario.partido.dto.BorrarPartidoRequest;
 import com.seminario.partido.dto.BorrarPartidoResponse;
-import com.seminario.partido.dto.BuscarPartidoPorOrganizadorRequest;
 import com.seminario.partido.dto.BuscarPartidoPorOrganizadorResponse;
 import com.seminario.partido.dto.BuscarPartidosPorHabilidadesRequest;
 import com.seminario.partido.dto.BuscarPartidosPorHabilidadesResponse;
@@ -52,11 +49,11 @@ public class PartidoController {
 	@Autowired
 	private PostulacionRepository postulacionRepository;
 	
-	@RequestMapping(value = "/buscarpartidoporidorg", method = RequestMethod.POST)
-    public BuscarPartidoPorOrganizadorResponse buscarPartidosPorIdOrganizador(@RequestBody BuscarPartidoPorOrganizadorRequest request) {
+	@RequestMapping(value = "/organizados", method = RequestMethod.GET)
+    public BuscarPartidoPorOrganizadorResponse buscarPartidosPorIdOrganizador(@RequestParam String idOrganizador) {
 		BuscarPartidoPorOrganizadorResponse response = new BuscarPartidoPorOrganizadorResponse();
-		Partido partido = partidoRepository.findByIdUsuarioOrganizador(request.getIdUsuarioOrganizador());
-		response.setPartidos(partido);
+		Partido partido = partidoRepository.findByIdUsuarioOrganizador(idOrganizador);
+		response.setPartido(partido);
 		return response;
     }
 	

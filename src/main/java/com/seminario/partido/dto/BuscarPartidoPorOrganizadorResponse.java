@@ -23,7 +23,7 @@ public class BuscarPartidoPorOrganizadorResponse {
 	public Partido getPartido() {
 		return partido;
 	}
-	public void setPartidos(Partido partido) {
+	public void setPartido(Partido partido) {
 		this.partido = partido;
 	}
 	
