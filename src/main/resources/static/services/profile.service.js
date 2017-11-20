@@ -8,49 +8,30 @@
 	function ProfileService($http, $q) {
 
 		var service = {
-			getUser: getUser
+			getUser: getUser,
+			editUser: editUser
 		};
 
 		function getUser() {
+			
+			return "push push";
+		}
 
-			var user = {
-				"id": "59fb372140113a00d8ad9c52",
-				"username": "greobasco",
-				"password": "123",
-				"email": "greobasco@gmail.com",
-				"edad": 25,
-				"latitud": 1,
-				"longitud": 1,
-				"ataja": "VERDE",
-				"defensa": "ROJO",
-				"ataque": "AMARILLO",
-				"estado": "VERDE",
-				"habilidad": "VERDE",
-				"tactica": "ROJO",
-				"jugados": [],
-				"organizados": [],
-				"reputacion": "UTIL",
-				calificacion : 7
-			}
-
+		function editUser(user) {
+			
 			var deferred = $q.defer();
-
-            /*
-            $http.post('/GCMSWeb/v2/legis/analyst.do', query)
-				.success(function (data) {
-					if (data.status != 200) {
-						deferred.reject(data.body);
+			
+			$http.post('usuarios/perfil', {usuario: user})
+				.then(function (data) {
+					if (data.data.codigoRespuesta != 1) {
+						deferred.reject(data.data);
 					}
 
-					deferred.resolve(formatResults(data.body));
-				})
-				.error(function (data) {
-					deferred.reject(data.body);
-                });
-            */
-                
-            deferred.resolve(user);
-
+					deferred.resolve(data.data);
+				}, function (data) {
+					deferred.reject(data.data);
+				});
+			
 			return deferred.promise;
 		}
 

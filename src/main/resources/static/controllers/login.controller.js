@@ -16,7 +16,7 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
 
     vm.signup = function() {
         vm.loading = true;
-        LoginService.crearUsuario(vm.nuevoUsuario).then(function() {
+        LoginService.crearUsuario(vm.nuevoUsuario).then(function(data) {
             vm.loading = false;
             $location.path( "/login" );
         }, function(data) {
@@ -26,9 +26,14 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
 
     vm.login = function() {
         vm.loading = true;
-        LoginService.login(vm.loginData).then(function() {
+        LoginService.login(vm.loginData).then(function(data) {
             vm.loading = false;
-            $location.path( "/profile" );
+            seminario2.controller('MainController').currentUser = data.usuario;
+            if(data.usuario.edad) {
+                $location.path( "/profile" );
+            } else {
+                $location.path( "/editProfile" );
+            }
         }, function(data) {
             alert(data.mensaje);
         });
