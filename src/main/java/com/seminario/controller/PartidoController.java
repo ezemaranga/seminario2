@@ -159,7 +159,7 @@ public class PartidoController {
 				}
 			}
 			
-			if(!partido.getIdUsuarioOrganizador().equals(idUsuario)) {
+			if(!partido.getIdUsuarioOrganizador().equals(idUsuario) && partido.getIdUsuarioJugador() == null) {
 				toReturn.add(partido);
 			}
 			
