@@ -133,12 +133,9 @@ public class PartidoController {
     public GetAllPartidosResponse getAll(@RequestParam("lat") Double lat, @RequestParam("lon") Double lon, @RequestParam("idUsuario") String idUsuario) {
 		GetAllPartidosResponse response = new GetAllPartidosResponse();
 		List<Partido> partidos = partidoRepository.findAll();
-		if (lat != null && lon != null) {
+		if (!partidos.isEmpty()) {
 			partidos = getMatchDistance(lat, lon, partidos);
 			partidos = orderMatchesByDateAndDistance(partidos);
-		} else {
-			//Por si falla el get de coordenadas
-			partidos = getMatchDistance(-34.614362, -58.4234552, partidos);
 		}
 		
 		List<Partido> toReturn = new ArrayList<>();
