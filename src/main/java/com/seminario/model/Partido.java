@@ -19,7 +19,6 @@ public class Partido {
 	private boolean jugado;
 	private String dia;
 	private String horario;
-	private String lugar;
 	private HashMap<String,String> habilidades;
 	private Double distancia;
 	private String distanciaString;
@@ -112,14 +111,6 @@ public class Partido {
 
 	public void setHorario(String horario) {
 		this.horario = horario;
-	}
-
-	public String getLugar() {
-		return lugar;
-	}
-
-	public void setLugar(String lugar) {
-		this.lugar = lugar;
 	}
 
 	public boolean isUsuarioPostulado() {
