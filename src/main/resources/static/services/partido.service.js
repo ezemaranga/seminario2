@@ -121,7 +121,7 @@
 				"idUsuarioJugador": idUsuario
 		  	}
 
-			$http.post('/partidos/postulaciones?idPartido=', params).then(
+			$http.post('/partidos/aceptar', params).then(
 					function(data) {
 						if (data.status != 200) {
 							deferred.reject(data);
