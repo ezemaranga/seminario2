@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.seminario.model.Partido;
 import com.seminario.model.Postulacion;
+import com.seminario.model.Usuario;
 import com.seminario.partido.dto.AceptarJugadorRequest;
 import com.seminario.partido.dto.AceptarJugadorResponse;
 import com.seminario.partido.dto.BorrarPartidoRequest;
@@ -37,6 +38,7 @@ import com.seminario.partido.dto.PostularmePartidoRequest;
 import com.seminario.partido.dto.PostularmePartidoResponse;
 import com.seminario.repository.PartidoRepository;
 import com.seminario.repository.PostulacionRepository;
+import com.seminario.repository.UserRepository;
 import com.seminario.usuario.dto.GetAllPartidosResponse;
 
 @RestController
@@ -49,6 +51,9 @@ public class PartidoController {
 	
 	@Autowired
 	private PostulacionRepository postulacionRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@RequestMapping(value = "/organizados", method = RequestMethod.GET)
     public BuscarPartidoPorOrganizadorResponse buscarPartidosPorIdOrganizador(@RequestParam String idOrganizador) {
@@ -122,9 +127,15 @@ public class PartidoController {
 		
 		List<Postulacion> postulaciones = postulacionRepository.findByIdPartido(idPartido);
 		
+		List<Usuario> usuarios = new ArrayList<>();
+		for (Postulacion postulacion : postulaciones) {
+			usuarios.add(userRepository.findById(postulacion.getIdJugador()));
+		}
+		
 		response.setCodigoRespuesta(1);
 		response.setMensaje("OK");
-		response.setPostulaciones(postulaciones);
+		response.setPartido(partidoRepository.findById(idPartido));
+		response.setPostulados(usuarios);
 		
 		return response;
     }
@@ -133,12 +144,9 @@ public class PartidoController {
     public GetAllPartidosResponse getAll(@RequestParam("lat") Double lat, @RequestParam("lon") Double lon, @RequestParam("idUsuario") String idUsuario) {
 		GetAllPartidosResponse response = new GetAllPartidosResponse();
 		List<Partido> partidos = partidoRepository.findAll();
-		if (lat != null && lon != null) {
+		if (!partidos.isEmpty()) {
 			partidos = getMatchDistance(lat, lon, partidos);
 			partidos = orderMatchesByDateAndDistance(partidos);
-		} else {
-			//Por si falla el get de coordenadas
-			partidos = getMatchDistance(-34.614362, -58.4234552, partidos);
 		}
 		
 		List<Partido> toReturn = new ArrayList<>();

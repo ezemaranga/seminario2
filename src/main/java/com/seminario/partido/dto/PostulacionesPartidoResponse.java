@@ -2,13 +2,15 @@ package com.seminario.partido.dto;
 
 import java.util.List;
 
-import com.seminario.model.Postulacion;
+import com.seminario.model.Partido;
+import com.seminario.model.Usuario;
 
 public class PostulacionesPartidoResponse {
 	
 	private int codigoRespuesta;
 	private String mensaje;
-	private List<Postulacion> postulaciones;
+	private Partido partido;
+	private List<Usuario> postulados;
 	
 	public int getCodigoRespuesta() {
 		return codigoRespuesta;
@@ -22,11 +24,17 @@ public class PostulacionesPartidoResponse {
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-	public List<Postulacion> getPostulaciones() {
-		return postulaciones;
+	public Partido getPartido() {
+		return partido;
 	}
-	public void setPostulaciones(List<Postulacion> postulaciones) {
-		this.postulaciones = postulaciones;
+	public void setPartido(Partido partido) {
+		this.partido = partido;
 	}
-
+	public List<Usuario> getPostulados() {
+		return postulados;
+	}
+	public void setPostulados(List<Usuario> postulados) {
+		this.postulados = postulados;
+	}
+	
 }

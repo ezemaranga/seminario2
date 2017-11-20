@@ -17,15 +17,49 @@
     <script src="node_modules/angular-route/angular-route.min.js"></script>
     <script src="node_modules/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
     <script src="node_modules/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
+    <script src="node_modules/ngWebsocket.js"></script>
     <script type="text/javascript">
       var seminario2 = angular.module('seminario2', [
         'ngRoute',
         'mobile-angular-ui',
-        'mobile-angular-ui.gestures'
+        'mobile-angular-ui.gestures',
+        'ngWebsocket'
       ]);
-
-      seminario2.run(function($transform) {
+	  var ws;
+      seminario2.run(function($transform, $websocket) {
         window.$transform = $transform;
+        
+        ws = $websocket.$new('ws://localhost:8080')
+          .$on('$open', function () {
+            console.log('Oh my gosh, websocket is really open! Fukken awesome!');
+
+            var data = {
+                level: 1,
+                text: 'ngWebsocket rocks!',
+                array: ['one', 'two', 'three'],
+                nested: {
+                    level: 2,
+                    deeper: [{
+                        hell: 'yeah'
+                    }, {
+                        so: 'good'
+                    }]
+                }
+            };
+
+            ws.$emit('ping', 'hi listening websocket server') // send a message to the websocket server
+              .$emit('pong', data);
+          })
+          .$on('pong', function (data) {
+            console.log('The websocket server has sent the following data:');
+            console.log(data);
+
+            ws.$close();
+          })
+          .$on('$close', function () {
+            console.log('Noooooooooou, I want to have more fun with ngWebsocket, damn it!');
+          });
+        
       });
     </script>
 
