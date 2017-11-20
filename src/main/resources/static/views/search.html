@@ -11,7 +11,7 @@
             <b>Fecha y Hora:</b> {{partido.dia + ' ' + partido.horario}} {{ partido.distanciaString }}
           </h4>
         </div>
-        <div ui-if="myAccordion == {{partido.id}}">
+        <div ui-if="myAccordion == '{{partido.id}}'">
           <div class="panel-body">
             <div><B>Tipo:</B> Futbol {{partido.tipo}}</div>
             <div><B>Superficie:</B> {{partido.superficie}}</div>
