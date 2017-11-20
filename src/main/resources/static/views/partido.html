@@ -1,11 +1,13 @@
 <div class="scrollable">
   <div class="scrollable-content section partidoContainer">
 
+    <img ng-if="Partido.loading" style="width: 40px;" src="../loading.gif" />
+    
     <!-- Si no hay partido creado, muestro el form para crear partido -->
     <div ng-if="!Partido.partidoCreado">
 
       <h1>Crear Partido</h1>
-      <form role="form" ng-submit="Partido.crearPartido()">
+      <form role="form">
         <fieldset>
           <div class="form-group has-success has-feedback">
             <div>{{Partido.nuevoPartido.horario | date: "HH:mm"}}</div>

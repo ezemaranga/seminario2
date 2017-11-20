@@ -2,12 +2,22 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
     
         var vm = this;
 
-        
+        vm.loading = true;
+
         vm.currentUser = seminario2.controller('MainController').currentUser;
     
         if(!vm.currentUser) {
             $location.path( "/login" );
         }
+
+        PartidoService.organizados(vm.currentUser.id).then(function(data) {
+            if(data.partido) {
+                vm.partidoCreado = true;
+            } else {
+                vm.partidoCreado = false;
+            }
+            vm.loading = false;
+        });
         
         vm.partidoCreado = false;
 

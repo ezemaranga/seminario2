@@ -12,13 +12,9 @@
           </h4>
         </div>
         <div ui-if="myAccordion == '{{partido.id}}'">
-          <div class="panel-body">
+          <div class="panel-body" style="color: black;">
             <div><B>Tipo:</B> Futbol {{partido.tipo}}</div>
             <div><B>Superficie:</B> {{partido.superficie}}</div>
-            <button ng-if="!partido.usuarioPostulado" class="btn btn-primary btn-block" ng-click="Search.postularme(partido.id)">
-              Postularme
-            </button>
-            <div ng-if="partido.usuarioPostulado">Ya estoy postulado a este partido</div>
             <div class="col-sm-10">
               <iframe
                 width="100%"
@@ -27,6 +23,10 @@
                 ng-src="{{Search.getMapsURL(partido.direccion)}}" allowfullscreen>
               </iframe>
             </div>
+            <button ng-if="!partido.usuarioPostulado" class="btn btn-primary btn-block" ng-click="Search.postularme(partido.id)">
+              Postularme
+            </button>
+            <div ng-if="partido.usuarioPostulado">Ya estoy postulado a este partido</div>
           </div>
         </div>
       </div>

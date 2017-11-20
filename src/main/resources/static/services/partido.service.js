@@ -10,7 +10,8 @@
 		var service = {
 			buscarPartidos : buscarPartidos,
 			crearPartido : crearPartido,
-			postularme: postularme
+			postularme: postularme,
+			organizados: organizados
 		};
 
 		function buscarPartidos(params) {
@@ -59,6 +60,25 @@
 		  	};
 
 			$http.post('/partidos/postularme', params).then(
+					function(data) {
+						if (data.status != 200) {
+							deferred.reject(data);
+						}
+
+						deferred.resolve(data.data);
+					}, function(data) {
+				deferred.reject(data);
+			});
+
+			return deferred.promise;
+		}
+
+		
+		function organizados(usuarioId) {
+			
+			var deferred = $q.defer();
+
+			$http.get('/partidos/organizados?idOrganizador=' + usuarioId).then(
 					function(data) {
 						if (data.status != 200) {
 							deferred.reject(data);
