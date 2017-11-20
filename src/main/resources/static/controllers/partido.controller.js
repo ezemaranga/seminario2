@@ -1,6 +1,13 @@
 seminario2.controller('PartidoController', function($scope, $location, PartidoService) {
     
         var vm = this;
+
+        
+        vm.currentUser = seminario2.controller('MainController').currentUser;
+    
+        if(!vm.currentUser) {
+            $location.path( "/login" );
+        }
         
         vm.partidoCreado = false;
 
