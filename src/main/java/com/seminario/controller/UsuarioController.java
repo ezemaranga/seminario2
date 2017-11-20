@@ -127,7 +127,7 @@ public class UsuarioController {
 			}
 		}
 		
-		response.setCodigoRespuesta(5);
+		response.setCodigoRespuesta(1);
 		response.setMensaje("OK");
         return response;
     }

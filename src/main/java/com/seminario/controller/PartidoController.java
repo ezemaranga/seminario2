@@ -112,7 +112,7 @@ public class PartidoController {
 		
 		postulacionRepository.save(postulacion);
 		
-		response.setCodigoRespuesta(10);
+		response.setCodigoRespuesta(1);
 		response.setMensaje("OK");
 		
 		return response;
@@ -124,7 +124,7 @@ public class PartidoController {
 		
 		List<Postulacion> postulaciones = postulacionRepository.findByIdPartido(idPartido);
 		
-		response.setCodigoRespuesta(11);
+		response.setCodigoRespuesta(1);
 		response.setMensaje("OK");
 		response.setPostulaciones(postulaciones);
 		
@@ -185,7 +185,7 @@ public class PartidoController {
 		
 		partidoRepository.save(partido);
 		
-		response.setCodigoRespuesta(12);
+		response.setCodigoRespuesta(1);
 		response.setMensaje("OK");
 		
 		return response;
@@ -199,7 +199,7 @@ public class PartidoController {
 		
 		partidoRepository.delete(partido);
 		
-		response.setCodigoRespuesta(12);
+		response.setCodigoRespuesta(1);
 		response.setMensaje("OK");
 		
 		return response;
