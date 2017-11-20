@@ -132,7 +132,7 @@ public class PartidoController {
     }
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
-    public GetAllPartidosResponse getAll(@RequestParam("lat") Double lat, @RequestParam("lon") Double lon ) {
+    public GetAllPartidosResponse getAll(@RequestParam("lat") Double lat, @RequestParam("lon") Double lon, @RequestParam("idUsuario") String idUsuario) {
 		GetAllPartidosResponse response = new GetAllPartidosResponse();
 		List<Partido> partidos = partidoRepository.findAll();
 		if (lat != null && lon != null) {
@@ -142,6 +142,20 @@ public class PartidoController {
 			//Por si falla el get de coordenadas
 			partidos = getMatchDistance(-34.614362, -58.4234552, partidos);
 		}
+		
+		for (Partido partido : partidos) {
+			List<Postulacion> postulaciones = postulacionRepository.findByIdPartido(partido.getId());
+			for (Postulacion postulacion : postulaciones) {
+				if (postulacion.getIdJugador().equals(idUsuario)) {
+					partido.setUsuarioPostulado(true);
+					break;
+				}
+			}
+			if (partido.isUsuarioPostulado()) {
+				break;
+			}
+		}
+		
 		response.setPartidos(partidos);
         return response;
     }

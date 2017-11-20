@@ -10,7 +10,7 @@ public class Partido {
 	
 	@Id
     public String id;
-	
+
 	private String tipo;
 	private String idUsuarioOrganizador;
 	private String idUsuarioJugador;
@@ -23,6 +23,8 @@ public class Partido {
 	private HashMap<String,String> habilidades;
 	private Double distancia;
 	private String distanciaString;
+	
+	private boolean usuarioPostulado;
 
 	public String getDistanciaString() {
 		return distanciaString;
@@ -118,6 +120,22 @@ public class Partido {
 
 	public void setLugar(String lugar) {
 		this.lugar = lugar;
+	}
+
+	public boolean isUsuarioPostulado() {
+		return usuarioPostulado;
+	}
+
+	public void setUsuarioPostulado(boolean usuarioPostulado) {
+		this.usuarioPostulado = usuarioPostulado;
+	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }
