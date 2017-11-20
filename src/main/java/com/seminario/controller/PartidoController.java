@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -140,6 +141,7 @@ public class PartidoController {
 			partidos = getMatchDistance(-34.614362, -58.4234552, partidos);
 		}
 		
+		List<Partido> toReturn = new ArrayList<>();
 		for (Partido partido : partidos) {
 			List<Postulacion> postulaciones = postulacionRepository.findByIdPartido(partido.getId());
 			for (Postulacion postulacion : postulaciones) {
@@ -148,12 +150,17 @@ public class PartidoController {
 					break;
 				}
 			}
+			
+			if(!partido.getIdUsuarioOrganizador().equals(idUsuario)) {
+				toReturn.add(partido);
+			}
+			
 			if (partido.isUsuarioPostulado()) {
 				break;
 			}
 		}
 		
-		response.setPartidos(partidos);
+		response.setPartidos(toReturn);
         return response;
     }
 	
