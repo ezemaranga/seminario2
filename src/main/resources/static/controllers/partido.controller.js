@@ -32,9 +32,8 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
 				habilidad: "VERDE",
 				tactica: "ROJO"
             },
-            fechaHora: null,
-            idUsuarioOrganizador: 1,
-            idUsuarioJugador: 2,
+            idUsuarioOrganizador: vm.currentUser.id,
+            idUsuarioJugador: null,
             jugado: false
         };
 
