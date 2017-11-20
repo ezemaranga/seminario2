@@ -1,4 +1,4 @@
-seminario2.controller('PartidoController', function($scope, $location, PartidoService) {
+seminario2.controller('PartidoController', function($scope, $location, PartidoService, $route, $templateCache) {
     
         var vm = this;
 
@@ -42,7 +42,9 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
             vm.nuevoPartido.horario = vm.horario.getHours() + ':' + vm.horario.getMinutes();
             vm.nuevoPartido.dia = vm.dia.getDate() + '/' + (vm.dia.getMonth()+1)  + '/' + vm.dia.getFullYear();
             PartidoService.crearPartido(vm.nuevoPartido).then(function (data) {
-                console.log(data);
+                var currentPageTemplate = $route.current.templateUrl;
+                $templateCache.remove(currentPageTemplate);
+                $route.reload();
             });
         }
         
