@@ -155,9 +155,6 @@ public class PartidoController {
 				toReturn.add(partido);
 			}
 			
-			if (partido.isUsuarioPostulado()) {
-				break;
-			}
 		}
 		
 		response.setPartidos(toReturn);
