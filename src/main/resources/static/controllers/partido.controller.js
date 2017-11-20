@@ -22,8 +22,8 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
         vm.partidoCreado = false;
 
         vm.nuevoPartido = {
-            horario: new Date(0, 0, 0, 19, 00, 0),
-            dia: new Date(),
+            horario: null,
+            dia: null,
             habilidades: {
                 ataja: "VERDE",
 				defensa: "ROJO",
@@ -39,6 +39,8 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
 
         vm.crearPartido = function() {
             console.log(vm.nuevoPartido);
+            vm.nuevoPartido.horario = vm.horario.getHours() + ':' + vm.horario.getMinutes();
+            vm.nuevoPartido.dia = vm.dia.getDate() + '/' + (vm.dia.getMonth()+1)  + '/' + vm.dia.getFullYear();
             PartidoService.crearPartido(vm.nuevoPartido).then(function (data) {
                 console.log(data);
             });

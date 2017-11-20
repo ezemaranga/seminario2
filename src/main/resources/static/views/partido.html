@@ -3,107 +3,109 @@
 
     <img ng-if="Partido.loading" style="width: 40px;" src="../loading.gif" />
     
-    <!-- Si no hay partido creado, muestro el form para crear partido -->
-    <div ng-if="!Partido.partidoCreado">
+    <div ng-if="!Partido.loading">
+      <!-- Si no hay partido creado, muestro el form para crear partido -->
+      <div ng-if="!Partido.partidoCreado">
 
-      <h1>Crear Partido</h1>
-      <form role="form">
-        <fieldset>
-          <div class="form-group has-success has-feedback">
-            <div>{{Partido.nuevoPartido.horario | date: "HH:mm"}}</div>
-            <label>Horario</label>
-            <input type="time"
-                    ng-model="Partido.nuevoPartido.horario"
-                    class="form-control"
-                    placeholder="Horario">
-          </div>
-  
-          <div class="form-group has-success has-feedback">
-            <label>Dia</label>
-            <input type="date"
-                    ng-model="Partido.nuevoPartido.dia"
-                    class="form-control"
-                    placeholder="Dia">
-          </div>
-
-          <div class="form-group has-success has-feedback">
-            <label>Direccion</label>
-            <input type="text"
-                    ng-model="Partido.nuevoPartido.direccion"
-                    class="form-control"
-                    placeholder="Direccion">
-          </div>
-
-          <div class="form-group has-success has-feedback">
-            <label>Tipo</label>
-            <select ng-model="Partido.nuevoPartido.tipo" class="form-control">
-              <option value="">Elija un tipo de partido...</option>
-              <option value="5">5</option>
-              <option value="7">7</option>
-              <option value="9">9</option>
-              <option value="11">11</option>
-            </select> 
-          </div>
-
-          <div class="form-group has-success has-feedback">
-            <label>Superficie</label>
-            <select ng-model="Partido.nuevoPartido.superficie" class="form-control">
-              <option value="">Elija un tipo de superficie...</option>
-              <option value="Sintetico">Sintético</option>
-              <option value="Cemento">Cemento</option>
-              <option value="Cesped">Cesped</option>
-              <option value="Madera">Madera</option>
-            </select> 
-          </div>
-
-          <label>Características buscadas</label>
-          <div class="display-flex flex-justify caracteristicasContainer">
-            <div class="display-flex flex-column">
-              <div><i class="fa fa-square fa-navbar font-30px" 
-                ng-class="Partido.nuevoPartido.habilidades.ataja"></i> <div>Ataja</div></div>
-              <div><i class="fa fa-square fa-navbar font-30px" 
-                ng-class="Partido.nuevoPartido.habilidades.defensa"></i> <div>Defensa</div></div>
-              <div><i class="fa fa-square fa-navbar font-30px" 
-                ng-class="Partido.nuevoPartido.habilidades.ataque"></i> <div>Ataque</div></div>
+        <h1>Crear Partido</h1>
+        <form role="form">
+          <fieldset>
+            <div class="form-group has-success has-feedback">
+              <div>{{Partido.nuevoPartido.horario | date: "HH:mm"}}</div>
+              <label>Horario</label>
+              <input type="time"
+                      ng-model="Partido.horario"
+                      class="form-control"
+                      placeholder="Horario">
             </div>
-            <div class="display-flex flex-column">
-              <div><i class="fa fa-square fa-navbar font-30px" 
-                ng-class="Partido.nuevoPartido.habilidades.estado"></i> <div>Estado</div></div>
-              <div><i class="fa fa-square fa-navbar font-30px" 
-                ng-class="Partido.nuevoPartido.habilidades.habilidad"></i> <div>Habilidad</div></div>
-              <div><i class="fa fa-square fa-navbar font-30px" 
-                ng-class="Partido.nuevoPartido.habilidades.tactica"></i> <div>Tactica</div></div>
-            </div>
-          </div> 
-        </fieldset>
     
-        <button class="btn btn-primary btn-block" ng-click="Partido.crearPartido()">
-          Crear
-        </button>
-      </form>
+            <div class="form-group has-success has-feedback">
+              <label>Dia</label>
+              <input type="date"
+                      ng-model="Partido.dia"
+                      class="form-control"
+                      placeholder="Dia">
+            </div>
 
-    </div>
+            <div class="form-group has-success has-feedback">
+              <label>Direccion</label>
+              <input type="text"
+                      ng-model="Partido.nuevoPartido.direccion"
+                      class="form-control"
+                      placeholder="Direccion">
+            </div>
+
+            <div class="form-group has-success has-feedback">
+              <label>Tipo</label>
+              <select ng-model="Partido.nuevoPartido.tipo" class="form-control">
+                <option value="">Elija un tipo de partido...</option>
+                <option value="5">5</option>
+                <option value="7">7</option>
+                <option value="9">9</option>
+                <option value="11">11</option>
+              </select> 
+            </div>
+
+            <div class="form-group has-success has-feedback">
+              <label>Superficie</label>
+              <select ng-model="Partido.nuevoPartido.superficie" class="form-control">
+                <option value="">Elija un tipo de superficie...</option>
+                <option value="Sintetico">Sintético</option>
+                <option value="Cemento">Cemento</option>
+                <option value="Cesped">Cesped</option>
+                <option value="Madera">Madera</option>
+              </select> 
+            </div>
+
+            <label>Características buscadas</label>
+            <div class="display-flex flex-justify caracteristicasContainer">
+              <div class="display-flex flex-column">
+                <div><i class="fa fa-square fa-navbar font-30px" 
+                  ng-class="Partido.nuevoPartido.habilidades.ataja"></i> <div>Ataja</div></div>
+                <div><i class="fa fa-square fa-navbar font-30px" 
+                  ng-class="Partido.nuevoPartido.habilidades.defensa"></i> <div>Defensa</div></div>
+                <div><i class="fa fa-square fa-navbar font-30px" 
+                  ng-class="Partido.nuevoPartido.habilidades.ataque"></i> <div>Ataque</div></div>
+              </div>
+              <div class="display-flex flex-column">
+                <div><i class="fa fa-square fa-navbar font-30px" 
+                  ng-class="Partido.nuevoPartido.habilidades.estado"></i> <div>Estado</div></div>
+                <div><i class="fa fa-square fa-navbar font-30px" 
+                  ng-class="Partido.nuevoPartido.habilidades.habilidad"></i> <div>Habilidad</div></div>
+                <div><i class="fa fa-square fa-navbar font-30px" 
+                  ng-class="Partido.nuevoPartido.habilidades.tactica"></i> <div>Tactica</div></div>
+              </div>
+            </div> 
+          </fieldset>
+      
+          <button class="btn btn-primary btn-block" ng-click="Partido.crearPartido()">
+            Crear
+          </button>
+        </form>
+
+      </div>
 
 
-    <!-- Si hay partido creado, muestro los postulados a mi partido -->
-    <div ng-if="Partido.partidoCreado">
+      <!-- Si hay partido creado, muestro los postulados a mi partido -->
+      <div ng-if="Partido.partidoCreado">
 
-      <h1>Postulados</h1>
-      <div class="panel-group" ui-state="myAccordion">
-        <div class="panel panel-default" ng-repeat="p in Partido.postulados">
-          <div class="panel-heading pointer" ui-set="{'myAccordion': p.id}">
-            <h4 class="panel-title">
-              <div>{{p.nombre}}</div>
-            </h4>
-          </div>
-          <div ui-if="myAccordion == {{p.id}}">
-            <div class="panel-body">
-              <!-- Datos del postulado -->
+        <h1>Postulados</h1>
+        <div class="panel-group" ui-state="myAccordion">
+          <div class="panel panel-default" ng-repeat="p in Partido.postulados">
+            <div class="panel-heading pointer" ui-set="{'myAccordion': p.id}">
+              <h4 class="panel-title">
+                <div>{{p.nombre}}</div>
+              </h4>
+            </div>
+            <div ui-if="myAccordion == {{p.id}}">
+              <div class="panel-body">
+                <!-- Datos del postulado -->
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
 
   </div>
