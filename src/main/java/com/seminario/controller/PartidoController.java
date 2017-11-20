@@ -177,6 +177,11 @@ public class PartidoController {
         return response;
     }
 	
+	@RequestMapping(value = "/removeAll", method = RequestMethod.GET)
+    public void deleteAll() {
+		partidoRepository.deleteAll();
+    }
+	
 	class PartidoDistancia{
 		int id;
 		int distancia;
