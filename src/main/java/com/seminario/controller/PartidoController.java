@@ -187,10 +187,8 @@ public class PartidoController {
     public AceptarJugadorResponse aceptar(@RequestBody AceptarJugadorRequest request) {
 		AceptarJugadorResponse response = new AceptarJugadorResponse();
 		
-		Postulacion postulacion = postulacionRepository.findById(request.getIdPostulacion());
-		
-		Partido partido = partidoRepository.findById(postulacion.getIdPartido());
-		partido.setIdUsuarioJugador(postulacion.getIdJugador());
+		Partido partido = partidoRepository.findById(request.getIdPartido());
+		partido.setIdUsuarioJugador(request.getIdUsuarioJugador());
 		
 		partidoRepository.save(partido);
 		

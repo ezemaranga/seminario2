@@ -2,14 +2,20 @@ package com.seminario.partido.dto;
 
 public class AceptarJugadorRequest {
 	
-	private String idPostulacion;
-
-	public String getIdPostulacion() {
-		return idPostulacion;
+	private String idPartido;
+	private String idUsuarioJugador;
+	
+	public String getIdPartido() {
+		return idPartido;
 	}
-
-	public void setIdPostulacion(String idPostulacion) {
-		this.idPostulacion = idPostulacion;
+	public void setIdPartido(String idPartido) {
+		this.idPartido = idPartido;
+	}
+	public String getIdUsuarioJugador() {
+		return idUsuarioJugador;
+	}
+	public void setIdUsuarioJugador(String idUsuarioJugador) {
+		this.idUsuarioJugador = idUsuarioJugador;
 	}
 
 }
