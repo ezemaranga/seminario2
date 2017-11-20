@@ -53,7 +53,7 @@ public class PartidoController {
     public BuscarPartidoPorOrganizadorResponse buscarPartidosPorIdOrganizador(@RequestParam String idOrganizador) {
 		BuscarPartidoPorOrganizadorResponse response = new BuscarPartidoPorOrganizadorResponse();
 		Partido partido = partidoRepository.findByIdUsuarioOrganizador(idOrganizador);
-		response.setPartidos(partido);
+		response.setPartido(partido);
 		return response;
     }
 	
