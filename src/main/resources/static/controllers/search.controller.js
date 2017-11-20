@@ -4,15 +4,23 @@ seminario2.controller('SearchController', function($scope, $location, PartidoSer
 
     vm.getMapsURL = getMapsURL;
 
+    vm.currentUser = seminario2.controller('MainController').currentUser;
+
+    if(!vm.currentUser) {
+        $location.path( "/login" );
+    }
+
     function init() {
         getPartidos();
     }
 
     function getPartidos() {
         vm.loading = true;
-        PartidoService.buscarPartidos().then(function (data) {
-                vm.partidos = data;
-                vm.loading = false;
+        navigator.geolocation.getCurrentPosition(function(data) {
+            PartidoService.buscarPartidos('lat=' + data.coords.latitude + '&lon=' + data.coords.longitude + '&idUsuario=' + vm.currentUser.id).then(function (data) {
+                    vm.partidos = data;
+                    vm.loading = false;
+            });
         });
     }
 

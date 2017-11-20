@@ -12,11 +12,11 @@
 			crearPartido : crearPartido
 		};
 
-		function buscarPartidos() {
+		function buscarPartidos(params) {
 
 			var deferred = $q.defer();
 
-			$http.get('/partidos/all?lat=-34.614362&lon=-58.4234552').then(
+			$http.get('/partidos/all?' + params).then(
 					function(data) {
 						if (data.status != 200) {
 							deferred.reject(data);
