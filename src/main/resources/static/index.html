@@ -27,6 +27,9 @@
         'mobile-angular-ui.gestures',
         'ngStomp'
       ]);
+      seminario2.config(['$qProvider', function ($qProvider) {
+            $qProvider.errorOnUnhandledRejections(false);
+        }]);
       var ws;
       var userId = "";
 
