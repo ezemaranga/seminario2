@@ -1,4 +1,4 @@
-seminario2.controller('PartidoController', function($scope, $location, PartidoService, $route, $templateCache) {
+seminario2.controller('PartidoController', function($scope, $location, PartidoService, $route, $templateCache, $http) {
     
         var vm = this;
 
@@ -55,7 +55,11 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
             vm.nuevoPartido.horario = vm.horario.getHours() + ':' + vm.horario.getMinutes();
             vm.nuevoPartido.dia = vm.dia.getDate() + '/' + (vm.dia.getMonth()+1)  + '/' + vm.dia.getFullYear();
             PartidoService.crearPartido(vm.nuevoPartido).then(function (data) {
-                MainCtrl.reloadView();
+                	            	// reload
+	            	var currentPageTemplate = $route.current.templateUrl;
+			        $templateCache.remove(currentPageTemplate);
+			        $route.reload();
+                $http.get('/websocket/refreshMatches');
             });
         }
 
@@ -63,6 +67,10 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
             seminario2.controller('MainController').jugadorAceptado = jugador;
             PartidoService.aceptarPostulacion(jugador.id, vm.idMiPartido).then(function(data) {
                 console.log(data);
+                                	            	// reload
+	            	var currentPageTemplate = $route.current.templateUrl;
+			        $templateCache.remove(currentPageTemplate);
+			        $route.reload();
             });
         }
         

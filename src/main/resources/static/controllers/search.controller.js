@@ -1,4 +1,4 @@
-seminario2.controller('SearchController', function($scope, $location, PartidoService, $sce) {
+seminario2.controller('SearchController', function($scope, $location, PartidoService, $sce, $http) {
 
     var vm = this;
 
@@ -31,6 +31,7 @@ seminario2.controller('SearchController', function($scope, $location, PartidoSer
     vm.postularme = function(partidoId) {
         PartidoService.postularme(partidoId, vm.currentUser.id).then(function (data) {
             init();
+            $http.get('/websocket/refreshMatches');
         });
     }
 

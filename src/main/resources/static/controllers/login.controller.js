@@ -1,4 +1,6 @@
-seminario2.controller('LoginController', function($scope, $location, LoginService) {
+seminario2.controller('LoginController', function($scope, $location, LoginService, $route, $templateCache) {
+
+	var MainCtrl = seminario2.controller('MainController');
 
     var vm = this;
 
@@ -51,7 +53,11 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
 	        var subscription2 = ws.subscribe(generalQueue,
 	        	function (payload, headers, res) {
 	            	console.log(payload);
-	            	alert("Refreshqueue");
+	            	// reload
+	            	var currentPageTemplate = $route.current.templateUrl;
+			        $templateCache.remove(currentPageTemplate);
+			        $route.reload();
+	            	//alert("Refreshqueue");
 	            });
 			
 	        

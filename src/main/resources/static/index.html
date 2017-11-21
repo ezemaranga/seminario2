@@ -137,6 +137,9 @@
           
           okbtn.onclick = function() {
               modal.style.display = "none";
+			    var xmlhttp = new XMLHttpRequest();
+			    xmlhttp.open("GET", "/websocket/refreshMatches", true);
+			    xmlhttp.send();
           }
 
           // When the user clicks anywhere outside of the modal, close it
