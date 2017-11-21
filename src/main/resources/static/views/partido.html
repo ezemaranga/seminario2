@@ -86,8 +86,8 @@
       </div>
 
 
-      <!-- Si hay partido creado, muestro los postulados a mi partido -->
-      <div ng-if="Partido.partidoCreado">
+      <!-- Si hay partido creado y no acepte ninguna postulacion, muestro los postulados a mi partido -->
+      <div ng-if="Partido.partidoCreado && !Partido.postulacionAceptada">
 
         <h1>Postulados</h1>
         <div class="panel-group" ui-state="myAccordion">
@@ -99,7 +99,7 @@
             </div>
             <div ui-if="myAccordion == '{{p.id}}'">
               <div class="panel-body">
-                <button class="btn btn-primary btn-block" ng-click="Partido.aceptarPostulacion(p.id)">
+                <button class="btn btn-primary btn-block" ng-click="Partido.aceptarPostulacion(p)">
                   Aceptar Postulacion
                 </button>
               </div>
@@ -108,6 +108,12 @@
         </div>
 
       </div>
+
+      <!-- Si hay partido creado y acepte postulacion, muestro los datos del partido y del postulado para calificarlo -->
+      <div ng-if="Partido.partidoCreado && Partido.postulacionAceptada">
+
+      </div>
+
     </div>
 
   </div>

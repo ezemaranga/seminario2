@@ -5,18 +5,25 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
         vm.loading = true;
 
         vm.currentUser = seminario2.controller('MainController').currentUser;
+        vm.jugadorAceptado = seminario2.controller('MainController').jugadorAceptado;
+
+        vm.postulacionAceptada = false;
     
         if(!vm.currentUser) {
             $location.path( "/login" );
         }
 
         PartidoService.organizados(vm.currentUser.id).then(function(data) {
-            if(data.partido) {
+            if(data.partidos.length > 0) {
                 vm.partidoCreado = true;
-                PartidoService.getPostulados(data.partido.id).then(function(data1) {
+                vm.partidoActual = data.partidos[0];
+                PartidoService.getPostulados(data.partidos[0].id).then(function(data1) {
                     vm.postulados = data1.postulados;
                     vm.idMiPartido = data1.partido.id;
                 });
+                if(data.partidos[0].idUsuarioJugador) {
+                    vm.postulacionAceptada = true;
+                }
             } else {
                 vm.partidoCreado = false;
             }
@@ -52,8 +59,9 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
             });
         }
 
-        vm.aceptarPostulacion = function(idUsuario) {
-            PartidoService.aceptarPostulacion(idUsuario, vm.idMiPartido).then(function(data) {
+        vm.aceptarPostulacion = function(jugador) {
+            seminario2.controller('MainController').jugadorAceptado = jugador;
+            PartidoService.aceptarPostulacion(jugador.id, vm.idMiPartido).then(function(data) {
                 console.log(data);
             });
         }
