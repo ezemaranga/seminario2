@@ -35,13 +35,19 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
                 $location.path( "/editProfile" );
             }
             //Suscripcion a la queue del usuario
-            var queue = '/topic/user' + data.usuario.id;
-            console.log(queue);
-	        var subscription = ws.subscribe(queue,
+            var userQueue = '/topic/user' + data.usuario.id;
+			var generalQueue = '/topic/all';
+	        var subscription = ws.subscribe(userQueue,
 	        	function (payload, headers, res) {
 	            	console.log(payload);
 	            	alert("Has sido seleccionado para el partido");
 	            });
+	        var subscription2 = ws.subscribe(generalQueue,
+	        	function (payload, headers, res) {
+	            	console.log(payload);
+	            	alert("Refreshqueue");
+	            });
+			
 	        
         }, function(data) {
             alert(data.mensaje);

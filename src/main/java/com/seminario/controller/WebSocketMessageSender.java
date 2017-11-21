@@ -20,9 +20,16 @@ public class WebSocketMessageSender {
 	
 	@RequestMapping(value = "/acceptUserForMatch")
 	public Partido acceptUserForMatch(@RequestParam String userId, @RequestParam String matchId) {
-		//Envio al usuario: http://localhost:8080/websocket/sendMessageToUser?userId=5a131aeaeb557505e1cd4f34
-		Partido p = partidoRepository.findById(matchId);
+		//Envio al usuario: http://localhost:8080/websocket/acceptUserForMatch?userId=5a131aeaeb557505e1cd4f34&matchId=test
+		Partido p = partidoRepository.findById("5a13605fa92f1718c0b43f6a"); //Harcode hasta que ande esto
 		template.convertAndSend("/topic/user" + userId, p);
 		return p;
 	}
+	
+	@RequestMapping(value = "/refreshMatches")
+	public String refreshMatches() {
+		template.convertAndSend("/topic/all", "{}");
+		return "Refresh matches";
+	}
+	
 }
