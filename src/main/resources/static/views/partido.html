@@ -111,7 +111,8 @@
 
       <!-- Si hay partido creado y acepte postulacion, muestro los datos del partido y del postulado para calificarlo -->
       <div ng-if="Partido.partidoCreado && Partido.postulacionAceptada">
-
+        Jugador: {{Partido.jugadorAceptado.username}}
+        Partido: {{Partido.partidoActual.id}}
       </div>
 
     </div>
