@@ -58,8 +58,13 @@ public class PartidoController {
 	@RequestMapping(value = "/organizados", method = RequestMethod.GET)
     public BuscarPartidoPorOrganizadorResponse buscarPartidosPorIdOrganizador(@RequestParam String idOrganizador) {
 		BuscarPartidoPorOrganizadorResponse response = new BuscarPartidoPorOrganizadorResponse();
-		Partido partido = partidoRepository.findByIdUsuarioOrganizador(idOrganizador);
-		response.setPartido(partido);
+		List<Partido> partidos = partidoRepository.findByIdUsuarioOrganizador(idOrganizador);
+		List<Partido> result = new ArrayList<Partido>();
+		for(Partido p : partidos) {
+			if(p.isJugado() == false)
+				result.add(p);
+		}
+		response.setPartidos(result);
 		return response;
     }
 	
