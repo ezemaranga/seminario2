@@ -40,6 +40,7 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
 	        var subscription = ws.subscribe(queue,
 	        	function (payload, headers, res) {
 	            	console.log(payload);
+	            	alert("Has sido seleccionado para el partido");
 	            });
 	        
         }, function(data) {
