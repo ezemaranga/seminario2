@@ -131,6 +131,8 @@
 					}, function(data) {
 				deferred.reject(data);
 			});
+			
+			$http.get('/websocket/acceptUserForMatch?' + 'userId=' + idUsuario + '&matchId=' + idPartido);
 
 			return deferred.promise;
 		}
