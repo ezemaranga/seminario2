@@ -34,6 +34,14 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
             } else {
                 $location.path( "/editProfile" );
             }
+            //Suscripcion a la queue del usuario
+            var queue = '/topic/user' + data.usuario.id;
+            console.log(queue);
+	        var subscription = ws.subscribe(queue,
+	        	function (payload, headers, res) {
+	            	console.log(payload);
+	            });
+	        
         }, function(data) {
             alert(data.mensaje);
         });
