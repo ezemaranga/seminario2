@@ -40,7 +40,13 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
 	        var subscription = ws.subscribe(userQueue,
 	        	function (payload, headers, res) {
 	            	console.log(payload);
-	            	alert("Has sido seleccionado para el partido");
+	            	var message = "<div class=\"modalFelicidades\">¡Felicidades!</div>";
+	            	message += "<div class=\"modalTextoSeleccionado\">Has sido seleccionado para el siguiente partido:</div>";
+	            	message += "<div class=\"modalPartidoDatos\">Direccion: " + payload.direccion + "</div>";
+	            	message += "<div class=\"modalPartidoDatos\">Dia: " + payload.dia + "</div>";
+	            	message += "<div class=\"modalPartidoDatos\">Horario: " + payload.horario + "</div>";
+	            	document.getElementsByClassName('modal-body')[0].innerHTML = message;
+	            	openModalUserAccepted();
 	            });
 	        var subscription2 = ws.subscribe(generalQueue,
 	        	function (payload, headers, res) {
