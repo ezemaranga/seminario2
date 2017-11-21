@@ -1,4 +1,4 @@
-seminario2.controller('MainController', function($rootScope, $scope, $location) {
+seminario2.controller('MainController', function($rootScope, $scope, $location, $route, $templateCache) {
 
     var vm = this;
     
@@ -20,6 +20,12 @@ seminario2.controller('MainController', function($rootScope, $scope, $location) 
 
     vm.search = function() {
         $location.path( "/search" );
+    }
+
+    vm.reloadView = function() {
+        var currentPageTemplate = $route.current.templateUrl;
+        $templateCache.remove(currentPageTemplate);
+        $route.reload();
     }
     
 });

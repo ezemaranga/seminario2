@@ -4,8 +4,10 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
 
         vm.loading = true;
 
-        vm.currentUser = seminario2.controller('MainController').currentUser;
-        vm.jugadorAceptado = seminario2.controller('MainController').jugadorAceptado;
+        var MainCtrl = seminario2.controller('MainController');
+
+        vm.currentUser = MainCtrl.currentUser;
+        vm.jugadorAceptado = MainCtrl.jugadorAceptado;
 
         vm.postulacionAceptada = false;
     
@@ -53,9 +55,7 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
             vm.nuevoPartido.horario = vm.horario.getHours() + ':' + vm.horario.getMinutes();
             vm.nuevoPartido.dia = vm.dia.getDate() + '/' + (vm.dia.getMonth()+1)  + '/' + vm.dia.getFullYear();
             PartidoService.crearPartido(vm.nuevoPartido).then(function (data) {
-                var currentPageTemplate = $route.current.templateUrl;
-                $templateCache.remove(currentPageTemplate);
-                $route.reload();
+                MainCtrl.reloadView();
             });
         }
 
