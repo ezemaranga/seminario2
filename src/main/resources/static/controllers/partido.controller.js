@@ -86,5 +86,15 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
                 return 'fa-star-half-o'
             }
         }
+
+        vm.calificarJugador = function() {
+            console.log(vm.calificacionParaJugador);
+            PartidoService.valorarJugador(vm.calificacionParaJugador, vm.partidoActual.id).then(function(data) {
+                // reload
+                var currentPageTemplate = $route.current.templateUrl;
+                $templateCache.remove(currentPageTemplate);
+                $route.reload();
+            });
+        }
         
     });

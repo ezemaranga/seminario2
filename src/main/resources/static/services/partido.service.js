@@ -14,7 +14,8 @@
 			organizados: organizados,
 			getPostulados: getPostulados,
 			aceptarPostulacion: aceptarPostulacion,
-			getJugador: getJugador
+			getJugador: getJugador,
+			valorarJugador: valorarJugador
 		};
 
 		function buscarPartidos(params) {
@@ -155,6 +156,31 @@
 
 			return deferred.promise;
 		}
+
+		function valorarJugador(calificacion, idPartido) {
+			
+			var deferred = $q.defer();
+
+			var params = {
+				"idPartido" : idPartido,
+				"jugado" : true, 
+				"reputacion" : calificacion  
+			  };
+
+			$http.post('/usuarios/valorar', params).then(
+					function(data) {
+						if (data.status != 200) {
+							deferred.reject(data);
+						}
+
+						deferred.resolve(data.data);
+					}, function(data) {
+				deferred.reject(data);
+			});
+
+			return deferred.promise;
+		}
+
 
 		return service;
 	}
