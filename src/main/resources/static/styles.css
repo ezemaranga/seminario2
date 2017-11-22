@@ -168,3 +168,9 @@
     font-weight: bold;
     font-size: 25px;
 }
+
+.modalPartidoDatos.calificacion {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+}

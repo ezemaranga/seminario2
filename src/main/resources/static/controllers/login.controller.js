@@ -39,6 +39,7 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
             //Suscripcion a la queue del usuario
             var userQueue = '/topic/user' + data.usuario.id;
 			var generalQueue = '/topic/all';
+			var userReviewQueue = '/topic/user/review' + data.usuario.id;
 	        var subscription = ws.subscribe(userQueue,
 	        	function (payload, headers, res) {
 	            	console.log(payload);
@@ -48,6 +49,7 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
 	            	message += "<div class=\"modalPartidoDatos\">Dia: " + payload.dia + "</div>";
 	            	message += "<div class=\"modalPartidoDatos\">Horario: " + payload.horario + "</div>";
 	            	document.getElementsByClassName('modal-body')[0].innerHTML = message;
+	            	document.getElementsByClassName('titulomodal')[0].innerHTML = "Aceptado";
 	            	openModalUserAccepted();
 	            });
 	        var subscription2 = ws.subscribe(generalQueue,
@@ -59,7 +61,16 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
 			        $route.reload();
 	            	//alert("Refreshqueue");
 	            });
-			
+	        var subscription3 = ws.subscribe(userReviewQueue,
+	        	function (payload, headers, res) {
+	            	console.log(payload);
+	            	var message = "<div class=\"modalFelicidades\">¡Calificación recibida!</div>";
+	            	message += "<div class=\"modalPartidoDatos calificacion\">" + payload.calificacion + "</div>";
+	            	message += "<div class=\"modalPartidoDatos\">Reputacion: " + payload.usuario.reputacion + "</div>";
+	            	document.getElementsByClassName('titulomodal')[0].innerHTML = "Calificación";
+	            	document.getElementsByClassName('modal-body')[0].innerHTML = message;
+	            	openModalUserAccepted();
+	            });
 	        
         }, function(data) {
             alert(data.mensaje);

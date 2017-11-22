@@ -94,6 +94,7 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
                 var currentPageTemplate = $route.current.templateUrl;
                 $templateCache.remove(currentPageTemplate);
                 $route.reload();
+                $http.get('/websocket/showReview?userId=' + vm.partidoActual.idUsuarioJugador + '&calificacion=' + vm.calificacionParaJugador);
             });
         }
         
