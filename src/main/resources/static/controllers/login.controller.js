@@ -1,4 +1,4 @@
-seminario2.controller('LoginController', function($scope, $location, LoginService, $route, $templateCache) {
+seminario2.controller('LoginController', function($scope, $location, LoginService, $route, $templateCache, $sessionStorage) {
 
 	var MainCtrl = seminario2.controller('MainController');
 
@@ -30,7 +30,7 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
         vm.loading = true;
         LoginService.login(vm.loginData).then(function(data) {
             vm.loading = false;
-            seminario2.controller('MainController').currentUser = data.usuario;
+            $sessionStorage.currentUser = data.usuario;
             if(data.usuario.edad) {
                 $location.path( "/profile" );
             } else {

@@ -1,4 +1,4 @@
-seminario2.controller('MainController', function($rootScope, $scope, $location, $route, $templateCache) {
+seminario2.controller('MainController', function($rootScope, $scope, $location, $route, $templateCache, $sessionStorage) {
 
     var vm = this;
     
@@ -20,6 +20,11 @@ seminario2.controller('MainController', function($rootScope, $scope, $location, 
 
     vm.search = function() {
         $location.path( "/search" );
+    }
+
+    vm.logout = function() {
+        delete $sessionStorage.currentUser;
+        $location.path( "/login" );
     }
 
     vm.reloadView = function() {

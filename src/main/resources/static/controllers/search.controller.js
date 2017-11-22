@@ -1,10 +1,10 @@
-seminario2.controller('SearchController', function($scope, $location, PartidoService, $sce, $http) {
+seminario2.controller('SearchController', function($scope, $location, PartidoService, $sce, $http, $sessionStorage) {
 
     var vm = this;
 
     vm.getMapsURL = getMapsURL;
 
-    vm.currentUser = seminario2.controller('MainController').currentUser;
+    vm.currentUser = $sessionStorage.currentUser;
 
     if(!vm.currentUser) {
         $location.path( "/login" );

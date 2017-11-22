@@ -1,4 +1,4 @@
-seminario2.controller('ProfileController', function($scope, $location,$sce,ProfileService) {
+seminario2.controller('ProfileController', function($scope, $location,$sce,ProfileService, $sessionStorage) {
 
     var vm = this;
 
@@ -8,7 +8,7 @@ seminario2.controller('ProfileController', function($scope, $location,$sce,Profi
     vm.goToEdit = goToEdit;
     vm.getMapsURL = getMapsURL;
 
-    vm.currentUser = seminario2.controller('MainController').currentUser;
+    vm.currentUser = $sessionStorage.currentUser;
 
     if(!vm.currentUser) {
         $location.path( "/login" );

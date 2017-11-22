@@ -1,4 +1,4 @@
-seminario2.controller('PartidoController', function($scope, $location, PartidoService, $route, $templateCache, $http) {
+seminario2.controller('PartidoController', function($scope, $location, PartidoService, $route, $templateCache, $http, $sessionStorage) {
     
         var vm = this;
 
@@ -6,7 +6,7 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
 
         var MainCtrl = seminario2.controller('MainController');
 
-        vm.currentUser = MainCtrl.currentUser;
+        vm.currentUser = $sessionStorage.currentUser;
 
         vm.postulacionAceptada = false;
     
