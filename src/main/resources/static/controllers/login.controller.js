@@ -66,7 +66,6 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
 	            	console.log(payload);
 	            	var message = "<div class=\"modalFelicidades\">¡Calificación recibida!</div>";
 	            	message += "<div class=\"modalPartidoDatos calificacion\">" + payload.calificacion + "</div>";
-	            	message += "<div class=\"modalPartidoDatos\">Reputacion: " + payload.usuario.reputacion + "</div>";
 	            	document.getElementsByClassName('titulomodal')[0].innerHTML = "Calificación";
 	            	document.getElementsByClassName('modal-body')[0].innerHTML = message;
 	            	openModalUserAccepted();
