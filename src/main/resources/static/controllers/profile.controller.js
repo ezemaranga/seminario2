@@ -7,6 +7,7 @@ seminario2.controller('ProfileController', function($scope, $location,$sce,Profi
     vm.editUser = editUser;
     vm.goToEdit = goToEdit;
     vm.getMapsURL = getMapsURL;
+    vm.videoJugador = {};
 
     vm.currentUser = $sessionStorage.currentUser;
 
@@ -38,6 +39,7 @@ seminario2.controller('ProfileController', function($scope, $location,$sce,Profi
 
     function editUser() {
         vm.loading = true;
+        vm.currentUser.video = vm.videoJugador.base64;
         ProfileService.editUser(vm.currentUser).then(function(data) {
             vm.loading = false;
             $location.path( "/profile" );

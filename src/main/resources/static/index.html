@@ -21,13 +21,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
     <script src="node_modules/ngStomp.js"></script>
     <script src="node_modules/ng-storage.js"></script>
+    <script src="node_modules/angular.base64.js"></script>
     <script type="text/javascript">
       var seminario2 = angular.module('seminario2', [
         'ngRoute',
         'mobile-angular-ui',
         'mobile-angular-ui.gestures',
         'ngStomp',
-        'ngStorage'
+        'ngStorage',
+        'naif.base64'
       ]);
       seminario2.config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);
