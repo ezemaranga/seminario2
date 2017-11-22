@@ -106,7 +106,17 @@ public class PartidoController {
 		
 		response.setCodigoRespuesta(1);
 		response.setMensaje("OK");
-		
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		usuarios = userRepository.findAll();
+		for(Usuario u : usuarios) {
+			URL apicall = null;
+			try {
+				apicall = new URL("http://localhost:8080/websocket/refreshMatches?userId=" + u.id);
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			apiGet(apicall);
+		}
 		return response;
     }
 	
@@ -122,6 +132,16 @@ public class PartidoController {
 		
 		response.setCodigoRespuesta(1);
 		response.setMensaje("OK");
+		
+		//Mensaje al organizador
+		Partido p = partidoRepository.findById(request.getIdPartido());
+		URL apicall = null;
+		try {
+			apicall = new URL("http://localhost:8080/websocket/refreshMatches?userId=" + p.getIdUsuarioOrganizador());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		apiGet(apicall);
 		
 		return response;
     }

@@ -41,8 +41,8 @@ public class WebSocketMessageSender {
 	}
 	
 	@RequestMapping(value = "/refreshMatches")
-	public String refreshMatches() {
-		template.convertAndSend("/topic/all", "{ \"test\" : \"test\"}");
+	public String refreshMatches(@RequestParam String userId) {
+		template.convertAndSend("/topic/all" + userId, "{ \"test\" : \"test\"}");
 		return "Refresh matches";
 	}
 	

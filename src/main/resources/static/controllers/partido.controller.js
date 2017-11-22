@@ -61,7 +61,7 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
 	            	var currentPageTemplate = $route.current.templateUrl;
 			        $templateCache.remove(currentPageTemplate);
 			        $route.reload();
-                $http.get('/websocket/refreshMatches');
+                $http.get('/websocket/refreshMatches?userId=' + vm.currentUser.id);
             });
         }
 

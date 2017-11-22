@@ -38,7 +38,7 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
             }
             //Suscripcion a la queue del usuario
             var userQueue = '/topic/user' + data.usuario.id;
-			var generalQueue = '/topic/all';
+			var generalQueue = '/topic/all' + data.usuario.id;
 			var userReviewQueue = '/topic/user/review' + data.usuario.id;
 	        var subscription = ws.subscribe(userQueue,
 	        	function (payload, headers, res) {
@@ -70,6 +70,12 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
 	            	document.getElementsByClassName('modal-body')[0].innerHTML = message;
 	            	openModalUserAccepted();
 	            });
+	       okbtn.onclick = function() {
+              modal.style.display = "none";
+			    var xmlhttp = new XMLHttpRequest();
+			    xmlhttp.open("GET", "/websocket/refreshMatches?userId=" + data.usuario.id, true);
+			    xmlhttp.send();
+          }
 	        
         }, function(data) {
             alert(data.mensaje);
