@@ -13,7 +13,8 @@
 			postularme: postularme,
 			organizados: organizados,
 			getPostulados: getPostulados,
-			aceptarPostulacion: aceptarPostulacion
+			aceptarPostulacion: aceptarPostulacion,
+			getJugador: getJugador
 		};
 
 		function buscarPartidos(params) {
@@ -133,6 +134,24 @@
 			});
 			
 			$http.get('/websocket/acceptUserForMatch?' + 'userId=' + idUsuario + '&matchId=' + idPartido);
+
+			return deferred.promise;
+		}
+
+		function getJugador(id) {
+			
+			var deferred = $q.defer();
+
+			$http.get('/usuarios/get?userId=' + id).then(
+					function(data) {
+						if (data.status != 200) {
+							deferred.reject(data);
+						}
+
+						deferred.resolve(data.data);
+					}, function(data) {
+				deferred.reject(data);
+			});
 
 			return deferred.promise;
 		}

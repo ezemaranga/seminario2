@@ -7,7 +7,6 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
         var MainCtrl = seminario2.controller('MainController');
 
         vm.currentUser = MainCtrl.currentUser;
-        vm.jugadorAceptado = MainCtrl.jugadorAceptado;
 
         vm.postulacionAceptada = false;
     
@@ -25,6 +24,9 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
                 });
                 if(data.partidos[0].idUsuarioJugador) {
                     vm.postulacionAceptada = true;
+                    PartidoService.getJugador(data.partidos[0].idUsuarioJugador).then(function(data) {
+                        vm.jugadorAceptado = data.usuario;
+                    })
                 }
             } else {
                 vm.partidoCreado = false;
