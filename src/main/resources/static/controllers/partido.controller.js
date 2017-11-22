@@ -97,5 +97,15 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
                 $http.get('/websocket/showReview?userId=' + vm.partidoActual.idUsuarioJugador + '&calificacion=' + vm.calificacionParaJugador);
             });
         }
+
+        vm.editHabilidad = function(currentValue, propiedad) {
+            if(vm.nuevoPartido.habilidades[propiedad]=='VERDE') {
+                vm.nuevoPartido.habilidades[propiedad] = 'ROJO';
+            } else if (vm.nuevoPartido.habilidades[propiedad]=='AMARILLO') {
+                vm.nuevoPartido.habilidades[propiedad] = 'VERDE';
+            } else {
+                vm.nuevoPartido.habilidades[propiedad] = 'AMARILLO';
+            }
+        }
         
     });

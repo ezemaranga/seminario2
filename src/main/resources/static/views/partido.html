@@ -60,20 +60,20 @@
             <label>Características buscadas</label>
             <div class="display-flex flex-justify caracteristicasContainer">
               <div class="display-flex flex-column">
-                <div><i class="fa fa-square fa-navbar font-30px" 
-                  ng-class="Partido.nuevoPartido.habilidades.ataja"></i> <div>Ataja</div></div>
-                <div><i class="fa fa-square fa-navbar font-30px" 
-                  ng-class="Partido.nuevoPartido.habilidades.defensa"></i> <div>Defensa</div></div>
-                <div><i class="fa fa-square fa-navbar font-30px" 
-                  ng-class="Partido.nuevoPartido.habilidades.ataque"></i> <div>Ataque</div></div>
+                <div><i class="fa fa-square fa-navbar font-30px pointer" 
+                  ng-class="Partido.nuevoPartido.habilidades.ataja" ng-click="Partido.editHabilidad(Partido.nuevoPartido.habilidades.ataja, 'ataja')"></i> <div>Ataja</div></div>
+                <div><i class="fa fa-square fa-navbar font-30px pointer" 
+                  ng-class="Partido.nuevoPartido.habilidades.defensa" ng-click="Partido.editHabilidad(Partido.nuevoPartido.habilidades.defensa, 'defensa')"></i> <div>Defensa</div></div>
+                <div><i class="fa fa-square fa-navbar font-30px pointer" 
+                  ng-class="Partido.nuevoPartido.habilidades.ataque" ng-click="Partido.editHabilidad(Partido.nuevoPartido.habilidades.ataque, 'ataque')"></i> <div>Ataque</div></div>
               </div>
               <div class="display-flex flex-column">
-                <div><i class="fa fa-square fa-navbar font-30px" 
-                  ng-class="Partido.nuevoPartido.habilidades.estado"></i> <div>Estado</div></div>
-                <div><i class="fa fa-square fa-navbar font-30px" 
-                  ng-class="Partido.nuevoPartido.habilidades.habilidad"></i> <div>Habilidad</div></div>
-                <div><i class="fa fa-square fa-navbar font-30px" 
-                  ng-class="Partido.nuevoPartido.habilidades.tactica"></i> <div>Tactica</div></div>
+                <div><i class="fa fa-square fa-navbar font-30px pointer"  
+                  ng-class="Partido.nuevoPartido.habilidades.estado" ng-click="Partido.editHabilidad(Partido.nuevoPartido.habilidades.estado, 'estado')"></i> <div>Estado</div></div>
+                <div><i class="fa fa-square fa-navbar font-30px pointer" 
+                  ng-class="Partido.nuevoPartido.habilidades.habilidad" ng-click="Partido.editHabilidad(Partido.nuevoPartido.habilidades.habilidad, 'habilidad')"></i> <div>Habilidad</div></div>
+                <div><i class="fa fa-square fa-navbar font-30px pointer" 
+                  ng-class="Partido.nuevoPartido.habilidades.tactica" ng-click="Partido.editHabilidad(Partido.nuevoPartido.habilidades.tactica, 'tactica')"></i> <div>Tactica</div></div>
               </div>
             </div> 
           </fieldset>

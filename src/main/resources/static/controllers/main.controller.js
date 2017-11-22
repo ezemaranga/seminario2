@@ -11,14 +11,17 @@ seminario2.controller('MainController', function($rootScope, $scope, $location, 
     });
 
     vm.profile = function() {
+        vm.reloadView();
         $location.path( "/profile" );
     }
 
     vm.partidos = function() {
+        vm.reloadView();
         $location.path( "/partido" );
     }
 
     vm.search = function() {
+        vm.reloadView();
         $location.path( "/search" );
     }
 

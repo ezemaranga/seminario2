@@ -1,4 +1,4 @@
-seminario2.controller('ProfileController', function($scope, $location,$sce,ProfileService, $sessionStorage) {
+seminario2.controller('ProfileController', function($scope, $location,$sce,ProfileService, $sessionStorage, PartidoService) {
 
     var vm = this;
 
@@ -12,6 +12,11 @@ seminario2.controller('ProfileController', function($scope, $location,$sce,Profi
 
     if(!vm.currentUser) {
         $location.path( "/login" );
+    } else {
+        PartidoService.getJugador(vm.currentUser.id).then(function(data) {
+            $sessionStorage.currentUser = data.usuario;
+            vm.currentUser = $sessionStorage.currentUser;
+        })
     }
 
     function getMapsURL(direccion) {
