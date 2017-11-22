@@ -138,6 +138,15 @@
                             ng-class="p.tactica"></i> <div>Tactica</div></div>
                         </div>
                       </div> 
+
+                      <br/>
+
+                      <div class="form-group row font-20px display-flex flex-center" ng-if="p.video">
+                        <video controls>
+                          <source type="video/mp4" src="{{'data:video/mp4;base64,' + p.video}}">
+                        </video>
+                      </div>
+
                       <button class="btn btn-primary btn-block" ng-click="Partido.aceptarPostulacion(p)">
                         Aceptar Postulacion
                       </button>
