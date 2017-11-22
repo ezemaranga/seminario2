@@ -20,6 +20,7 @@ import com.seminario.usuario.dto.EditarPerfilUsuarioRequest;
 import com.seminario.usuario.dto.EditarPerfilUsuarioResponse;
 import com.seminario.usuario.dto.GetAllUsuariosResponse;
 import com.seminario.usuario.dto.GetPremiosResponse;
+import com.seminario.usuario.dto.GetUsuarioResponse;
 import com.seminario.usuario.dto.LoginUsuarioRequest;
 import com.seminario.usuario.dto.LoginUsuarioResponse;
 import com.seminario.usuario.dto.RegistroUsuarioRequest;
@@ -149,6 +150,13 @@ public class UsuarioController {
     public GetPremiosResponse getPremios(@RequestParam String usuarioId) {
 		GetPremiosResponse response = new GetPremiosResponse();
 		response.setPremios(premioRepository.findByIdUsuario(usuarioId));
+		return response;
+    }
+	
+	@RequestMapping(value = "/get", method = RequestMethod.GET)
+    public GetUsuarioResponse getUsuario(@RequestParam String userId) {
+		GetUsuarioResponse response = new GetUsuarioResponse();
+		response.setUsuario(userRepository.findById(userId));
 		return response;
     }
 
