@@ -73,5 +73,16 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
 			        $route.reload();
             });
         }
+
+        vm.getStar = function(num, reputacion) {
+            var aux = num * 2;
+            if(aux <= reputacion) {
+                return 'fa-star'
+            } else if (aux-2 >= reputacion) {
+                return 'fa-star-o'
+            } else {
+                return 'fa-star-half-o'
+            }
+        }
         
     });

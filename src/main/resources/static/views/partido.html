@@ -98,10 +98,51 @@
               </h4>
             </div>
             <div ui-if="myAccordion == '{{p.id}}'">
-              <div class="panel-body">
-                <button class="btn btn-primary btn-block" ng-click="Partido.aceptarPostulacion(p)">
-                  Aceptar Postulacion
-                </button>
+              <div class="panel-body" style="color: black;">
+
+                    <div>
+
+                      <div class="font-35px display-flex flex-center">
+                          <i class="fa AMARILLO shadowIcon" ng-class="Partido.getStar(1, p.reputacion)" aria-hidden="true"></i>
+                          <i class="fa AMARILLO shadowIcon" ng-class="Partido.getStar(2, p.reputacion)" aria-hidden="true"></i>
+                          <i class="fa AMARILLO shadowIcon" ng-class="Partido.getStar(3, p.reputacion)" aria-hidden="true"></i>
+                          <i class="fa AMARILLO shadowIcon" ng-class="Partido.getStar(4, p.reputacion)" aria-hidden="true"></i>
+                          <i class="fa AMARILLO shadowIcon" ng-class="Partido.getStar(5, p.reputacion)" aria-hidden="true"></i>
+                      </div>
+
+                      <div class="form-group row font-20px">
+                        <label class="col-sm-2 col-form-label col-form-label-lg">Email</label>
+                        <div class="col-sm-10">{{p.email}}</div>
+                      </div>
+                      <div class="form-group row font-20px">
+                        <label for="edad" class="col-sm-2 col-form-label col-form-label-lg">Edad</label>
+                        <div class="col-sm-10">{{p.edad}}</div>
+                      </div>
+                
+                      <h2>Características</h2>
+                      <div class="display-flex flex-justify caracteristicasContainer">
+                        <div class="display-flex flex-column">
+                          <div><i class="fa fa-square fa-navbar font-30px" 
+                            ng-class="p.ataja"></i> <div>Ataja</div></div>
+                          <div><i class="fa fa-square fa-navbar font-30px" 
+                            ng-class="p.defensa"></i> <div>Defensa</div></div>
+                          <div><i class="fa fa-square fa-navbar font-30px" 
+                            ng-class="p.ataque"></i> <div>Ataque</div></div>
+                        </div>
+                        <div class="display-flex flex-column">
+                          <div><i class="fa fa-square fa-navbar font-30px" 
+                            ng-class="p.estado"></i> <div>Estado</div></div>
+                          <div><i class="fa fa-square fa-navbar font-30px" 
+                            ng-class="p.habilidad"></i> <div>Habilidad</div></div>
+                          <div><i class="fa fa-square fa-navbar font-30px" 
+                            ng-class="p.tactica"></i> <div>Tactica</div></div>
+                        </div>
+                      </div> 
+                      <button class="btn btn-primary btn-block" ng-click="Partido.aceptarPostulacion(p)">
+                        Aceptar Postulacion
+                      </button>
+                    </div>
+
               </div>
             </div>
           </div>
