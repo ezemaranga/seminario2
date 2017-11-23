@@ -5,7 +5,7 @@
     
     <div class="panel-group" ui-state="myAccordion">
       <div class="panel panel-default" ng-repeat="partido in Search.partidos">
-        <div class="panel-heading pointer" ui-set="{'myAccordion': partido.id}">
+        <div ng-class="partido.usuarioPostulado ? 'postulado' : 'nopostulado'" class="panel-heading pointer" ui-set="{'myAccordion': partido.id}">
           <h4 class="panel-title">
             <i class="fa fa-futbol-o" aria-hidden="true"></i>              
             <b>Fecha y Hora:</b> {{partido.dia + ' ' + partido.horario}} {{ partido.distanciaString }}
