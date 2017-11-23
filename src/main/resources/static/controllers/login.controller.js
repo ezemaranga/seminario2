@@ -24,7 +24,11 @@ seminario2.controller('LoginController', function($scope, $location, LoginServic
         }, function(data) {
             alert(data.mensaje);
         });
-    }
+	}
+	
+	vm.signUpForm = function() {
+		$location.path( "/register" );
+	}
 
     vm.login = function() {
         vm.loading = true;
