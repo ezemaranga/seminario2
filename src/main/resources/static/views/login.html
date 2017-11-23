@@ -27,9 +27,9 @@
       </fieldset>
       <hr>
   
-      <img ng-if="Login.loading" style="width: 40px;" src="../loading.gif" />
       <button class="btn btn-primary btn-block" ng-disabled="!(Login.loginData.email && Login.loginData.password)" ng-click="Login.login()">
-        Login
+        Login      <img ng-if="Login.loading" style="width: 40px;" src="../loading.gif" />
+        
       </button>
       
     </form>
