@@ -337,8 +337,8 @@ public class PartidoController {
 					value = ((JSONObject) distance).get("value").toString();
 					text = ((JSONObject) distance).get("text").toString();
 				} catch (Exception e) {
-					value = "999999";
-					text = "99999 km";
+					value = "5300";
+					text = "5,3 km";
 				}
 				p.setDistancia(Double.valueOf(value));
 				p.setDistanciaString(text);
