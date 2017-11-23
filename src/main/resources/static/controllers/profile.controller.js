@@ -60,4 +60,8 @@ seminario2.controller('ProfileController', function($scope, $location,$sce,Profi
         $location.path( "/editProfile" );
     }
 
+    vm.cancelEdit = function() {
+        $location.path( "/profile" );
+    }
+
 });
