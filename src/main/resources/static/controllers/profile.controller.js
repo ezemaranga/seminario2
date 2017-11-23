@@ -39,7 +39,7 @@ seminario2.controller('ProfileController', function($scope, $location,$sce,Profi
 
     function editUser() {
         vm.loading = true;
-        vm.currentUser.video = vm.videoJugador.base64;
+        if(vm.videoJugador) vm.currentUser.video = vm.videoJugador.base64;
         ProfileService.editUser(vm.currentUser).then(function(data) {
             vm.loading = false;
             $location.path( "/profile" );
