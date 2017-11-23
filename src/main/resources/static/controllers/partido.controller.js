@@ -55,7 +55,7 @@ seminario2.controller('PartidoController', function($scope, $location, PartidoSe
         vm.crearPartido = function() {
             console.log(vm.nuevoPartido);
             vm.nuevoPartido.horario = ("0" + vm.horario.getHours()).slice(-2)  + ':' + ("0" + vm.horario.getMinutes()).slice(-2);
-            vm.nuevoPartido.dia = ("0" + vm.horario.getDate()).slice(-2) + '/' + ("0" + (vm.dia.getMonth()+1)).slice(-2)  + '/' + vm.dia.getFullYear();
+            vm.nuevoPartido.dia = ("0" + vm.dia.getDate()).slice(-2) + '/' + ("0" + (vm.dia.getMonth()+1)).slice(-2)  + '/' + vm.dia.getFullYear();
             PartidoService.crearPartido(vm.nuevoPartido).then(function (data) {
                 	            	// reload
 	            	var currentPageTemplate = $route.current.templateUrl;
