@@ -166,7 +166,10 @@ public class PartidoController {
     }
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
-    public GetAllPartidosResponse getAll(@RequestParam("lat") Double lat, @RequestParam("lon") Double lon, @RequestParam("idUsuario") String idUsuario) {
+    public GetAllPartidosResponse getAll(@RequestParam("lat") Double lat, @RequestParam("lon") Double lon, @RequestParam("idUsuario") String idUsuario,
+    		@RequestParam("estado") String estado, @RequestParam("ataque") String ataque,
+    		@RequestParam("ataja") String ataja,@RequestParam("defensa") String defensa,
+    		@RequestParam("habilidad") String habilidad,@RequestParam("tactica") String tactica) {
 		GetAllPartidosResponse response = new GetAllPartidosResponse();
 		List<Partido> partidos = partidoRepository.findAll();
 		if (!partidos.isEmpty()) {
@@ -185,7 +188,30 @@ public class PartidoController {
 			}
 			
 			if(!partido.getIdUsuarioOrganizador().equals(idUsuario) && partido.getIdUsuarioJugador() == null) {
-				toReturn.add(partido);
+				HashMap<String,Integer> habilidadesEnNumeros = new HashMap<String,Integer>();
+				habilidadesEnNumeros.put("ROJO", 0);
+				habilidadesEnNumeros.put("AMARILLO", 1);
+				habilidadesEnNumeros.put("VERDE", 2);
+				for (Partido p : partidos) {
+					Boolean add = true;
+					HashMap<String, String> habilidadesDelPartido = p.getHabilidades();
+					if(habilidadesEnNumeros.get(habilidadesDelPartido.get("estado")) > habilidadesEnNumeros.get(estado))
+						add = false;
+					if(habilidadesEnNumeros.get(habilidadesDelPartido.get("ataque")) > habilidadesEnNumeros.get(ataque))
+						add = false;
+					if(habilidadesEnNumeros.get(habilidadesDelPartido.get("ataja")) > habilidadesEnNumeros.get(ataja))
+						add = false;
+					if(habilidadesEnNumeros.get(habilidadesDelPartido.get("defensa")) > habilidadesEnNumeros.get(defensa))
+						add = false;
+					if(habilidadesEnNumeros.get(habilidadesDelPartido.get("habilidad")) > habilidadesEnNumeros.get(habilidad))
+						add = false;
+					if(habilidadesEnNumeros.get(habilidadesDelPartido.get("tactica")) > habilidadesEnNumeros.get(tactica))
+						add = false;
+					System.out.println(habilidadesEnNumeros.get(habilidadesDelPartido.get("estado")));
+					System.out.println(habilidadesEnNumeros.get(estado));
+					if (add)
+						toReturn.add(partido);
+				}
 			}
 			
 		}

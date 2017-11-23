@@ -17,7 +17,7 @@ seminario2.controller('SearchController', function($scope, $location, PartidoSer
     function getPartidos() {
         vm.loading = true;
         navigator.geolocation.getCurrentPosition(function(data) {
-            PartidoService.buscarPartidos('lat=' + data.coords.latitude + '&lon=' + data.coords.longitude + '&idUsuario=' + vm.currentUser.id).then(function (data) {
+            PartidoService.buscarPartidos('lat=' + data.coords.latitude + '&lon=' + data.coords.longitude + '&idUsuario=' + vm.currentUser.id + '&estado=' + vm.currentUser.estado + '&ataque=' + vm.currentUser.ataque + '&ataja=' + vm.currentUser.ataja + '&defensa=' + vm.currentUser.defensa + '&habilidad=' + vm.currentUser.habilidad + '&tactica=' + vm.currentUser.tactica).then(function (data) {
                     vm.partidos = data;
                     vm.loading = false;
             });
